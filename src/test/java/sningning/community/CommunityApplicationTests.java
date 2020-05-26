@@ -1,6 +1,6 @@
 package sningning.community;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +21,7 @@ class CommunityApplicationTests implements ApplicationContextAware {
 	private ApplicationContext applicationContext;
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
 
@@ -32,7 +32,7 @@ class CommunityApplicationTests implements ApplicationContextAware {
 
 
 	@Test
-	void testApplicationContext() {
+	public void testApplicationContext() {
 		System.out.println(applicationContext);
 
 		AlphaDao alphaDao = applicationContext.getBean(AlphaDao.class);
@@ -44,7 +44,7 @@ class CommunityApplicationTests implements ApplicationContextAware {
 
 
 	@Test
-	void testBeanManagement() {
+	public void testBeanManagement() {
 
 		AlphaService alphaService = applicationContext.getBean(AlphaService.class);
 		System.out.println(alphaService);
@@ -55,7 +55,7 @@ class CommunityApplicationTests implements ApplicationContextAware {
 
 
 	@Test
-	void testBeanConfig() {
+	public void testBeanConfig() {
 
 		SimpleDateFormat simpleDateFormat = applicationContext.getBean(SimpleDateFormat.class);
 		System.out.println(simpleDateFormat.format(new Date()));
@@ -69,7 +69,7 @@ class CommunityApplicationTests implements ApplicationContextAware {
 	private AlphaService alphaService;
 
 	@Test
-	void testDI() {
+	public void testDI() {
 		System.out.println(alphaDao);
 		System.out.println(alphaService);
 	}
