@@ -9,7 +9,6 @@ import javax.annotation.PreDestroy;
 
 /**
  * @ClassName: AlphaService
- * @Description: TODO
  * @Author: Song Ningning
  * @Date: 2020-04-21 0:09
  */

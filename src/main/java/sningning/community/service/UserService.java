@@ -8,7 +8,6 @@ import sningning.community.entity.User;
 
 /**
  * @ClassName: UserService
- * @Description: TODO
  * @Author: Song Ningning
  * @Date: 2020-04-22 23:55
  */
