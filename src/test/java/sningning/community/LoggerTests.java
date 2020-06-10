@@ -8,7 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 
 /**
  * @ClassName: LoggerTests
- * @Description: TODO
  * @Author: Song Ningning
  * @Date: 2020-04-23 17:30
  */

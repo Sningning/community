@@ -5,7 +5,6 @@ import sningning.community.dao.AlphaDao;
 
 /**
  * @ClassName: AlphaDaoHibernateImpl
- * @Description: TODO
  * @Author: Song Ningning
  * @Date: 2020-04-20 23:19
  */

@@ -4,7 +4,6 @@ import java.util.Date;
 
 /**
  * @ClassName: User
- * @Description: TODO
  * @Author: Song Ningning
  * @Date: 2020-04-21 23:07
  */

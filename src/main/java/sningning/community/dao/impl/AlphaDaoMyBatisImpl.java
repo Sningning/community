@@ -6,7 +6,6 @@ import sningning.community.dao.AlphaDao;
 
 /**
  * @ClassName: AlphaDaoMyBatisImpl
- * @Description: TODO
  * @Author: Song Ningning
  * @Date: 2020-04-21 0:02
  */

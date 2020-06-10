@@ -5,7 +5,6 @@ import sningning.community.entity.User;
 
 /**
  * @ClassName: UserMapper
- * @Description: TODO
  * @Author: Song Ningning
  * @Date: 2020-04-21 23:06
  */
