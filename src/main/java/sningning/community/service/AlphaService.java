@@ -13,6 +13,7 @@ import javax.annotation.PreDestroy;
  * @Date: 2020-04-21 0:09
  */
 @Service
+// @Scope("prototype")
 public class AlphaService {
 
     public AlphaService() {
