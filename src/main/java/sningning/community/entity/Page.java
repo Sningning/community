@@ -7,21 +7,31 @@ package sningning.community.entity;
  */
 public class Page {
 
-    // 当前页码
+    /**
+     * 当前页码
+     */
     private int current = 1;
-    // 显示的上限
+    /**
+     * 显示的上限
+     */
     private int limit = 10;
-    // 数据总数（用于计算总页数）
+    /**
+     * 数据总数（用于计算总页数）
+     */
     private int rows;
-    // 查询路径（用来复用分页的链接）
+    /**
+     * 查询路径（用来复用分页的链接）
+     */
     private String path;
 
 
     /**
      * 获取当前页的起始行
      */
-    public int getoffset() {
-        // current * limit - current
+    public int getOffset() {
+        // 当前页 * 每页数量 = 每页最后一行
+        // 每页最后一行 - 每页数量 = 当前页起始行
+        // current * limit - limit
         return (current - 1) * limit;
     }
 
@@ -29,7 +39,7 @@ public class Page {
      * 获取总页数
      */
     public int getTotal() {
-        // rows / limit [+1]
+        // rows / limit 或 (rows / limit) + 1
         if (rows % limit == 0) {
             return rows / limit;
         } else {
@@ -51,9 +61,8 @@ public class Page {
     public int getTo() {
         int to = current + 2;
         int total = getTotal();
-        return to >= total ? total : to;
+        return to > total ? total : to;
     }
-
 
     public int getCurrent() {
         return current;
@@ -80,7 +89,7 @@ public class Page {
     }
 
     public void setRows(int rows) {
-        if (rows >=1 ) {
+        if (rows >= 1) {
             this.rows = rows;
         }
     }
@@ -92,7 +101,5 @@ public class Page {
     public void setPath(String path) {
         this.path = path;
     }
-
-
 
 }

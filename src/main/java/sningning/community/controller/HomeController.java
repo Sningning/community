@@ -37,12 +37,12 @@ public class HomeController {
         page.setRows(discussPostService.findDiscussPostRows(0));
         page.setPath("/index");
 
-        List<DiscussPost> list = discussPostService.findDiscussPost(0, page.getoffset(), page.getLimit());
+        List<DiscussPost> list = discussPostService.findDiscussPost(0, page.getOffset(), page.getLimit());
         List<Map<String, Object>> discussPost = new ArrayList<>();
         if (list != null) {
             for(DiscussPost post : list) {
                 Map<String, Object> map = new HashMap<>();
-                User user = userService.findUserbyId(post.getUserId());
+                User user = userService.findUserById(post.getUserId());
                 map.put("post", post);
                 map.put("user", user);
                 discussPost.add(map);

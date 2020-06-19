@@ -17,7 +17,12 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User findUserbyId(int id) {
+    /**
+     * 根据用户 id 查询用户
+     * @param id 用户 id
+     * @return 查询到的用户
+     */
+    public User findUserById(int id) {
         return userMapper.selectById(id);
     }
 }

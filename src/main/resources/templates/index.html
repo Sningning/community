@@ -140,10 +140,10 @@
 				</li>
 			</ul>
 			<!-- 分页 -->
-			<nav class="mt-5" th:if="${page.rows>0}"> <!--有数据才显示-->
+			<nav class="mt-5" th:if="${page.rows>0}"> <!-- 有数据才显示分页 -->
 				<ul class="pagination justify-content-center">
 					<li class="page-item">
-						<!--<a class="page-link" th:href="@{${page.path}?current=1}">首页</a>-->
+						<!-- <a class="page-link" th:href="@{${page.path}?current=1}">首页</a> -->
 						<a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
 					</li>
 					<!--判断当前页是否是第一页，如果是则不显示“上一页”，通过 disabled 控制-->
@@ -232,6 +232,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script th:src="@{/js/global.js}"></script>
-<script th:src="@{js/index.js}"></script>
+<script th:src="@{/js/index.js}"></script>
 </body>
 </html>

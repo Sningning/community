@@ -1,9 +1,11 @@
 package sningning.community;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import sningning.community.dao.DiscussPostMapper;
 import sningning.community.dao.UserMapper;
 import sningning.community.entity.DiscussPost;
@@ -17,6 +19,7 @@ import java.util.List;
  * @Author: Song Ningning
  * @Date: 2020-04-21 23:20
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = CommunityApplication.class)
 public class MapperTests {
