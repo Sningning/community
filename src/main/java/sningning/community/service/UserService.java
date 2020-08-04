@@ -137,7 +137,7 @@ public class UserService implements CommunityConstant {
 
     /**
      * 登录账户
-     * @param username 用账号
+     * @param username 账号
      * @param password 密码
      * @param expiredSeconds 过期时间
      * @return
@@ -212,5 +212,15 @@ public class UserService implements CommunityConstant {
      */
     public int updateHeader(int userId, String headerUrl) {
         return userMapper.updateHeader(userId, headerUrl);
+    }
+
+    /**
+     * 修改密码
+     * @param userId 用户名
+     * @param password 新密码
+     * @return
+     */
+    public int updatePassword(int userId, String password) {
+        return userMapper.updatePassword(userId, password);
     }
 }

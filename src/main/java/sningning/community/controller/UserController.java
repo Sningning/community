@@ -119,4 +119,32 @@ public class UserController {
             LOGGER.error("读取头像失败：" + e.getMessage());
         }
     }
+
+    /**
+     * 更新密码
+     * @param oldPassword 旧密码
+     * @param newPassword 新密码
+     * @return
+     */
+    @RequestMapping(path = "/update", method = RequestMethod.POST)
+    public String updatePassword(String oldPassword, String newPassword, Model model) {
+
+        User user = hostHolder.getUser();
+        String password = CommunityUtil.md5(oldPassword + user.getSalt());
+        if (user.getPassword().equals(password)) {
+            // 判空
+            if (StringUtils.isBlank(newPassword)) {
+                model.addAttribute("passwordMsg", "密码不能为空");
+                return "/site/setting";
+            }
+            newPassword = CommunityUtil.md5(newPassword + user.getSalt());
+            userService.updatePassword(user.getId(), newPassword);
+            model.addAttribute("msg", "密码修改成功！");
+            model.addAttribute("target", "/login");
+        } else {
+            model.addAttribute("passwordError", "密码错误");
+            return "/site/setting";
+        }
+        return "/site/operate-result";
+    }
 }
