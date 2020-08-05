@@ -2,8 +2,8 @@ package sningning.community.entity;
 
 /**
  * 封装分页相关的信息
- * @Author: Song Ningning
- * @Date: 2020-04-23 0:54
+ * @author: Song Ningning
+ * @date: 2020-04-23 0:54
  */
 public class Page {
 

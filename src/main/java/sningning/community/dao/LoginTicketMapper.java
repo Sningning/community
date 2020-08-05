@@ -4,8 +4,8 @@ import org.apache.ibatis.annotations.*;
 import sningning.community.entity.LoginTicket;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 22:28
+ * @author: Song Ningning
+ * @date: 2020-08-03 22:28
  */
 @Mapper
 public interface LoginTicketMapper {

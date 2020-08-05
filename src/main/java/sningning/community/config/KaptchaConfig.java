@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Properties;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 21:47
+ * @author: Song Ningning
+ * @date: 2020-08-03 21:47
  */
 @Configuration
 public class KaptchaConfig {

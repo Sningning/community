@@ -5,9 +5,8 @@ import org.springframework.stereotype.Repository;
 import sningning.community.dao.AlphaDao;
 
 /**
- * @ClassName: AlphaDaoMyBatisImpl
- * @Author: Song Ningning
- * @Date: 2020-04-21 0:02
+ * @author: Song Ningning
+ * @date: 2020-04-21 0:02
  */
 @Repository
 @Primary

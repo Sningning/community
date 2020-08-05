@@ -12,8 +12,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 11:01
+ * @author: Song Ningning
+ * @date: 2020-08-03 11:01
  */
 @Component
 public class MailClient {

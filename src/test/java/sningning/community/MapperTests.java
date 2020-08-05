@@ -18,8 +18,8 @@ import java.util.List;
 
 /**
  * @ClassName: MapperTests
- * @Author: Song Ningning
- * @Date: 2020-04-21 23:20
+ * @author: Song Ningning
+ * @date: 2020-04-21 23:20
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

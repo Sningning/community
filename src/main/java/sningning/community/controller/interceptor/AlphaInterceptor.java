@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-04 19:18
+ * @author: Song Ningning
+ * @date: 2020-08-04 19:18
  */
 @Component
 public class AlphaInterceptor implements HandlerInterceptor {

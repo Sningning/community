@@ -17,9 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @ClassName: HomeController
- * @Author: Song Ningning
- * @Date: 2020-04-23 0:18
+ * @author: Song Ningning
+ * @date: 2020-04-23 0:18
  */
 @Controller
 public class HomeController {

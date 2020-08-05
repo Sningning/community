@@ -6,8 +6,8 @@ import org.springframework.util.DigestUtils;
 import java.util.UUID;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 12:14
+ * @author: Song Ningning
+ * @date: 2020-08-03 12:14
  */
 public class CommunityUtil {
 

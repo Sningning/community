@@ -6,9 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import java.text.SimpleDateFormat;
 
 /**
- * @ClassName: AlphaConfig
- * @Author: Song Ningning
- * @Date: 2020-04-21 0:21
+ * @author: Song Ningning
+ * @date: 2020-04-21 0:21
  */
 @Configuration
 public class AlphaConfig {

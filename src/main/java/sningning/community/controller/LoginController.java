@@ -26,8 +26,8 @@ import java.io.OutputStream;
 import java.util.Map;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 12:03
+ * @author: Song Ningning
+ * @date: 2020-08-03 12:03
  */
 @Controller
 public class LoginController implements CommunityConstant {

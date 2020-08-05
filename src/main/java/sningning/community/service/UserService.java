@@ -21,9 +21,8 @@ import java.util.Random;
 
 
 /**
- * @ClassName: UserService
- * @Author: Song Ningning
- * @Date: 2020-04-22 23:55
+ * @author: Song Ningning
+ * @date: 2020-04-22 23:55
  */
 @Service
 public class UserService implements CommunityConstant {

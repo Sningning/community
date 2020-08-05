@@ -8,9 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 /**
- * @ClassName: AlphaService
- * @Author: Song Ningning
- * @Date: 2020-04-21 0:09
+ * @author: Song Ningning
+ * @date: 2020-04-21 0:09
  */
 @Service
 // @Scope("prototype")

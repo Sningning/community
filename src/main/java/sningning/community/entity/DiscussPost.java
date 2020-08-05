@@ -4,8 +4,8 @@ import java.util.Date;
 
 /**
  * 帖子实体类
- * @Author: Song Ningning
- * @Date: 2020-04-22 22:25
+ * @author: Song Ningning
+ * @date: 2020-04-22 22:25
  */
 public class DiscussPost {
 

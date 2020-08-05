@@ -4,8 +4,8 @@ import java.util.Date;
 
 /**
  * 用户实体类
- * @Author: Song Ningning
- * @Date: 2020-04-21 23:07
+ * @author: Song Ningning
+ * @date: 2020-04-21 23:07
  */
 public class User {
 

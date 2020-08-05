@@ -4,9 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import sningning.community.entity.User;
 
 /**
- * @ClassName: UserMapper
- * @Author: Song Ningning
- * @Date: 2020-04-21 23:06
+ * @author: Song Ningning
+ * @date: 2020-04-21 23:06
  */
 
 @Mapper

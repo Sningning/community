@@ -23,8 +23,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 11:41
+ * @author: Song Ningning
+ * @date: 2020-08-03 11:41
  */
 @Controller
 @RequestMapping("/user")

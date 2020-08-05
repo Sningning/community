@@ -7,9 +7,8 @@ import sningning.community.entity.DiscussPost;
 import java.util.List;
 
 /**
- * @ClassName: DiscussPostMapper
- * @Author: Song Ningning
- * @Date: 2020-04-22 22:29
+ * @author: Song Ningning
+ * @date: 2020-04-22 22:29
  */
 @Mapper
 public interface DiscussPostMapper {

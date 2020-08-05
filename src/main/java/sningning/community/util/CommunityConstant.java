@@ -1,8 +1,8 @@
 package sningning.community.util;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 17:03
+ * @author: Song Ningning
+ * @date: 2020-08-03 17:03
  */
 public interface CommunityConstant {
 

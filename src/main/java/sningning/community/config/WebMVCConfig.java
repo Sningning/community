@@ -8,8 +8,8 @@ import sningning.community.controller.interceptor.AlphaInterceptor;
 import sningning.community.controller.interceptor.LoginTicketInterceptor;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-04 19:25
+ * @author: Song Ningning
+ * @date: 2020-08-04 19:25
  */
 
 @Configuration

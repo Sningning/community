@@ -8,9 +8,8 @@ import sningning.community.entity.DiscussPost;
 import java.util.List;
 
 /**
- * @ClassName: DiscussPostService
- * @Author: Song Ningning
- * @Date: 2020-04-22 23:51
+ * @author: Song Ningning
+ * @date: 2020-04-22 23:51
  */
 @Service
 public class DiscussPostService {

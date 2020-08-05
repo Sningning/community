@@ -3,8 +3,8 @@ package sningning.community.entity;
 import java.util.Date;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 22:27
+ * @author: Song Ningning
+ * @date: 2020-08-03 22:27
  */
 public class LoginTicket {
 

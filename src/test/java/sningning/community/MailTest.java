@@ -11,8 +11,8 @@ import org.thymeleaf.context.Context;
 import sningning.community.util.MailClient;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-03 11:14
+ * @author: Song Ningning
+ * @date: 2020-08-03 11:14
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

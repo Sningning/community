@@ -17,9 +17,8 @@ import java.io.PrintWriter;
 import java.util.*;
 
 /**
- * @ClassName: AlphaController
- * @Author: Song Ningning
- * @Date: 2020-04-20 23:05
+ * @author: Song Ningning
+ * @date: 2020-04-20 23:05
  */
 @Controller
 @RequestMapping("/alpha")

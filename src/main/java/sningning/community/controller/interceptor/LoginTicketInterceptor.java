@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
- * @Author: Song Ningning
- * @Date: 2020-08-04 20:20
+ * @author: Song Ningning
+ * @date: 2020-08-04 20:20
  */
 @Component
 public class LoginTicketInterceptor implements HandlerInterceptor {
