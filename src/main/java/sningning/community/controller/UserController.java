@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import sningning.community.annotation.LoginRequired;
 import sningning.community.entity.User;
 import sningning.community.service.UserService;
 import sningning.community.util.CommunityUtil;
@@ -47,6 +48,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
     public String getSettingPage() {
         return "/site/setting";
@@ -58,6 +60,7 @@ public class UserController {
      * @param model
      * @return
      */
+    @LoginRequired
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
     public String uploadHeader(MultipartFile headerImage, Model model) {
         // 判空
@@ -126,6 +129,7 @@ public class UserController {
      * @param newPassword 新密码
      * @return
      */
+    @LoginRequired
     @RequestMapping(path = "/update", method = RequestMethod.POST)
     public String updatePassword(String oldPassword, String newPassword, Model model) {
 
