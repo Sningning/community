@@ -151,7 +151,7 @@
 						<a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
 					<!--th:each 生成连续的页码；如果是当前页，通过 active 将当前页图标点亮-->
 					<li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
-						<a class="page-link" href="#" th:text="${i}">1</a>
+						<a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
 					</li>
 					<!--判断当前页是否是最后一页，如果是则不显示“下一页”，通过 disabled 参数控制-->
 					<li th:class="|page-item ${page.current==page.total?'disabled':''}|">
