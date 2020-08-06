@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 /**
+ * Controller 示例
  * @author: Song Ningning
  * @date: 2020-04-20 23:05
  */
@@ -198,6 +199,17 @@ public class AlphaController {
         System.out.println(session.getAttribute("id"));
         System.out.println(session.getAttribute("name"));
         return "set cookie";
+    }
+
+    /**
+     * ajax 示例
+     */
+    @RequestMapping(path = "/ajax", method = RequestMethod.POST)
+    @ResponseBody
+    public String testAjax(String name, int age) {
+        System.out.println(name);
+        System.out.println(age);
+        return CommunityUtil.getJSONString(0, "OK");
     }
 
 }
