@@ -11,7 +11,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 敏感词过滤器
@@ -28,15 +29,14 @@ public class SensitiveFilter {
     private class TrieNode {
 
         // 标记是否是一个敏感词
-        private boolean isWord = false;
+        private boolean isWord;
 
         // 子节点(key 是下级节点字符，value 是下级节点)
-        private TreeMap<Character, TrieNode> next = new TreeMap<>();
+        private Map<Character, TrieNode> next;
 
         public TrieNode(boolean isWord) {
             this.isWord = isWord;
-            this.next = new TreeMap<>();
-            ;
+            this.next = new HashMap<>();
         }
 
         public TrieNode() {
