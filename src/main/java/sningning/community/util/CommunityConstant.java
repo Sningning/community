@@ -30,4 +30,14 @@ public interface CommunityConstant {
      * 记住我 状态下的登录凭证的超时时间为 3 个月
      */
     int REMEMBER_EXPIRED_TIME = 3600 * 24 * 100;
+
+    /**
+     * 实体类型：帖子
+     */
+    int ENTITY_TYPE_POST = 1;
+
+    /**
+     * 实体类型：评论
+     */
+    int ENTITY_TYPE_COMMENT = 2;
 }
