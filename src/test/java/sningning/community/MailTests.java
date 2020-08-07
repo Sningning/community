@@ -17,7 +17,7 @@ import sningning.community.util.MailClient;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = CommunityApplication.class)
-public class MailTest {
+public class MailTests {
 
     @Autowired
     public MailClient mailClient;
