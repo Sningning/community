@@ -3,12 +3,15 @@ package sningning.community.controller;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sningning.community.entity.DiscussPost;
 import sningning.community.entity.User;
 import sningning.community.service.DiscussPostService;
+import sningning.community.service.UserService;
 import sningning.community.util.CommunityUtil;
 import sningning.community.util.HostHolder;
 
@@ -28,6 +31,9 @@ public class DiscussPostController {
 
     @Autowired
     private HostHolder hostHolder;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     @ResponseBody
@@ -53,5 +59,17 @@ public class DiscussPostController {
         discussPostService.addDiscussPost(post);
         // 报错情况统一处理
         return CommunityUtil.getJSONString(0, "发布成功！");
+    }
+
+    @RequestMapping(path = "/detail/{discussPostId}", method = RequestMethod.GET)
+    public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, Model model) {
+        // 帖子
+        DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
+        model.addAttribute("post", post);
+        // 帖子作者
+        User author = userService.findUserById(post.getUserId());
+        model.addAttribute("author", author);
+
+        return "/site/discuss-detail";
     }
 }
