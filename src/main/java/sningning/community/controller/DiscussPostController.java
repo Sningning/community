@@ -44,7 +44,7 @@ public class DiscussPostController {
         }
 
         if (StringUtils.isBlank(title) || StringUtils.isBlank(content)) {
-            return CommunityUtil.getJSONString(1, "帖子标题和内容不能为空！");
+            return CommunityUtil.getJSONString(-1, "帖子标题和内容不能为空！");
         }
 
         DiscussPost post = new DiscussPost();
