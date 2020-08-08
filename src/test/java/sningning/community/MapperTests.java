@@ -8,9 +8,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import sningning.community.dao.DiscussPostMapper;
 import sningning.community.dao.LoginTicketMapper;
+import sningning.community.dao.MessageMapper;
 import sningning.community.dao.UserMapper;
 import sningning.community.entity.DiscussPost;
 import sningning.community.entity.LoginTicket;
+import sningning.community.entity.Message;
 import sningning.community.entity.User;
 
 import java.util.Date;
@@ -32,6 +34,8 @@ public class MapperTests {
     private DiscussPostMapper discussPostMapper;
     @Autowired
     private LoginTicketMapper loginTicketMapper;
+    @Autowired
+    private MessageMapper messageMapper;
 
     @Test
     public void testSelectUser() {
@@ -104,6 +108,24 @@ public class MapperTests {
         loginTicket = loginTicketMapper.selectByTicket(ticket);
         System.out.println("修改后：");
         System.out.println(loginTicket);
+    }
+
+    @Test
+    public void testSelectLetters() {
+        List<Message> list = messageMapper.selectConversations(111, 0, 20);
+        list.forEach(System.out::println);
+
+        int count = messageMapper.selectConversationCount(111);
+        System.out.println("selectConversationCount：" + count);
+
+        list = messageMapper.selectLetters("111_112", 0, 10);
+        list.forEach(System.out::println);
+
+        count = messageMapper.selectLetterCount("111_112");
+        System.out.println("selectLetterCount：" + count);
+
+        count = messageMapper.selectLetterUnreadCount(131, null);
+        System.out.println("selectLetterUnreadCount：" + count);
     }
 
 }
