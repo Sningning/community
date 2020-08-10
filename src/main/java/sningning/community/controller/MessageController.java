@@ -149,6 +149,7 @@ public class MessageController implements CommunityConstant {
     @RequestMapping(path = "/letter/send", method = RequestMethod.POST)
     @ResponseBody
     public String sendLetter(String toName, String content) {
+
         User target = userService.findUserByName(toName);
         if (target == null) {
             return CommunityUtil.getJSONString(-1, "目标用户不存在！");
