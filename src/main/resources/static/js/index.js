@@ -23,7 +23,7 @@ function publish() {
 			setTimeout(function(){
 				$("#hintModal").modal("hide");
 				// 成功后刷新页面
-				if (data.code == 0) {
+				if (data.code === 0) {
 					window.location.reload();
 				}
 			}, 2000);

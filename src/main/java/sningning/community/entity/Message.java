@@ -8,6 +8,8 @@ import java.util.Date;
  */
 public class Message {
 
+    private int id;
+
     /**
      * 发件人
      * 1-系统用户; 其他为用户id
@@ -34,6 +36,14 @@ public class Message {
      * 发送时间
      */
     private Date createTime;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getFromId() {
         return fromId;
@@ -86,7 +96,8 @@ public class Message {
     @Override
     public String toString() {
         return "Message{" +
-                "fromId=" + fromId +
+                "id=" + id +
+                ", fromId=" + fromId +
                 ", toId=" + toId +
                 ", conversationId='" + conversationId + '\'' +
                 ", content='" + content + '\'' +

@@ -118,7 +118,7 @@ public class MapperTests {
         int count = messageMapper.selectConversationCount(111);
         System.out.println("selectConversationCount：" + count);
 
-        list = messageMapper.selectLetters("111_112", 0, 10);
+        list = messageMapper.selectLettersDesc("111_112", 0, 10);
         list.forEach(System.out::println);
 
         count = messageMapper.selectLetterCount("111_112");

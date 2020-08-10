@@ -222,4 +222,13 @@ public class UserService implements CommunityConstant {
     public int updatePassword(int userId, String password) {
         return userMapper.updatePassword(userId, password);
     }
+
+    /**
+     * 根据用户名查询用户
+     * @param username 用户名
+     * @return
+     */
+    public User findUserByName(String username) {
+        return userMapper.selectByName(username);
+    }
 }

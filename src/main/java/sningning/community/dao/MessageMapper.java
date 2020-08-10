@@ -17,7 +17,7 @@ public interface MessageMapper {
      * @param userId 用户id
      * @param offset 当前页起始行，用于分页
      * @param limit 每页数量，用于分页
-     * @return 最新的一条私信
+     * @return 最新的会话排在最前
      */
     List<Message> selectConversations(int userId, int offset, int limit);
 
@@ -30,12 +30,23 @@ public interface MessageMapper {
 
     /**
      * 查询某个会话所包含的私信列表
+     * 优先显示最新消息
      * @param conversationId 会话id
      * @param offset 当前页起始行，用于分页
      * @param limit 每页数量，用于分页
-     * @return
+     * @return 最新的消息排在最前
      */
-    List<Message> selectLetters(String conversationId, int offset, int limit);
+    List<Message> selectLettersDesc(String conversationId, int offset, int limit);
+
+    /**
+     * 查询某个会话所包含的私信列表
+     * 优先显示最老的消息
+     * @param conversationId 会话id
+     * @param offset 当前页起始行，用于分页
+     * @param limit 每页数量，用于分页
+     * @return 最新的消息排在最后
+     */
+    List<Message> selectLettersAsc(String conversationId, int offset, int limit);
 
     /**
      * 查询某个会话所包含的私信数量
@@ -51,4 +62,18 @@ public interface MessageMapper {
      * @return conversationId 如果为空，返回所有未读私信数量；如果不为空，返回 conversationId 表示的会话中未读私信数量
      */
     int selectLetterUnreadCount(int userId, String conversationId);
+
+    /**
+     * 新增一条消息
+     * @return
+     */
+    int insertMessage(Message message);
+
+    /**
+     * 修改消息状态
+     * @param ids
+     * @param status
+     * @return
+     */
+    int updateStatus(List<Integer> ids, int status);
 }
