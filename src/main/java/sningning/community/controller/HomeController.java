@@ -9,7 +9,9 @@ import sningning.community.entity.DiscussPost;
 import sningning.community.entity.Page;
 import sningning.community.entity.User;
 import sningning.community.service.DiscussPostService;
+import sningning.community.service.LikeService;
 import sningning.community.service.UserService;
+import sningning.community.util.CommunityConstant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,12 +23,16 @@ import java.util.Map;
  * @date: 2020-04-23 0:18
  */
 @Controller
-public class HomeController {
+public class HomeController implements CommunityConstant {
 
     @Autowired
     private DiscussPostService discussPostService;
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LikeService likeService;
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String getIndexPage(Model model, Page page) {
@@ -44,6 +50,11 @@ public class HomeController {
                 User author = userService.findUserById(post.getUserId());
                 map.put("post", post);
                 map.put("author", author);
+
+                // 点赞信息
+                long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId());
+                map.put("likeCount", likeCount);
+
                 discussPost.add(map);
             }
         }
