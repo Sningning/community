@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import sningning.community.annotation.LoginRequired;
 import sningning.community.entity.User;
+import sningning.community.service.FollowService;
 import sningning.community.service.LikeService;
 import sningning.community.service.UserService;
+import sningning.community.util.CommunityConstant;
 import sningning.community.util.CommunityUtil;
 import sningning.community.util.HostHolder;
 
@@ -30,7 +32,7 @@ import java.io.OutputStream;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController implements CommunityConstant {
 
     private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -51,6 +53,9 @@ public class UserController {
 
     @Autowired
     private LikeService likeService;
+
+    @Autowired
+    private FollowService followService;
 
     @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
@@ -171,6 +176,20 @@ public class UserController {
         // 被赞数量
         int likeCount = likeService.findUserLikeCount(userId);
         model.addAttribute("likeCount", likeCount);
+
+        // 关注数量
+        long followeeCount = followService.findFolloweeCount(userId, ENTITY_TYPE_USER);
+        model.addAttribute("followeeCount", followeeCount);
+        // 粉丝数量
+        long followerCount = followService.findFollowerCount(ENTITY_TYPE_USER, userId);
+        model.addAttribute("followerCount", followerCount);
+        // 是否已关注
+        boolean hasFollowed = false;
+        if (hostHolder.getUser() != null) {
+            hasFollowed = followService.hasFollowed(hostHolder.getUser().getId(), ENTITY_TYPE_USER, userId);
+        }
+        model.addAttribute("hasFollowed", hasFollowed);
+
         return "/site/profile";
     }
 }
