@@ -12,7 +12,8 @@ public class Message {
 
     /**
      * 发件人
-     * 1-系统用户; 其他为用户id
+     * <p>
+     * 系统用户为 1
      */
     private int fromId;
     /**
@@ -21,10 +22,22 @@ public class Message {
     private int toId;
     /**
      * 会话id
+     * <p>
+     * 1-用户之间发的消息：fromId_toId
+     * <p>
+     * 2-系统消息：
+     * <p>
+     * 关于评论：comment
+     * 关于点赞：like
+     * 关于关注：follow
      */
     private String conversationId;
     /**
      * 私信内容
+     * <p>
+     * 1-用户之间的消息：消息具体内容
+     * <p>
+     * 2-系统消息：json
      */
     private String content;
     /**

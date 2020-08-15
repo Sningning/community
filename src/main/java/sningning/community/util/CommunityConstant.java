@@ -60,4 +60,24 @@ public interface CommunityConstant {
      * 消息已删除
      */
     int DELETE = 2;
+
+    /**
+     * 主题：评论
+     */
+    String TOPIC_COMMENT = "comment";
+
+    /**
+     * 主题：点赞
+     */
+    String TOPIC_LIKE = "like";
+
+    /**
+     * 主题：关注
+     */
+    String TOPIC_FOLLOW = "follow";
+
+    /**
+     * 系统用户 id
+     */
+    int SYSTEM_USER_ID = 1;
 }

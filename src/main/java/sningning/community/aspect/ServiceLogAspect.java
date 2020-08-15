@@ -35,6 +35,9 @@ public class ServiceLogAspect {
 
         // 获取 ip 地址
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes == null) {
+            return;
+        }
         HttpServletRequest request = attributes.getRequest();
         String ip = request.getRemoteHost();
 
