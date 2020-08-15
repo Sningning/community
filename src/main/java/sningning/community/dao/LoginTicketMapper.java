@@ -8,6 +8,7 @@ import sningning.community.entity.LoginTicket;
  * @date: 2020-08-03 22:28
  */
 @Mapper
+@Deprecated
 public interface LoginTicketMapper {
 
     /**
