@@ -1,4 +1,4 @@
-package sningning.community;
+package sningning.community.service;
 
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -8,10 +8,7 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,9 +18,7 @@ import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-import sningning.community.dao.DiscussPostMapper;
+import org.springframework.stereotype.Service;
 import sningning.community.dao.elasticsearch.DiscussPostRepository;
 import sningning.community.entity.DiscussPost;
 
@@ -33,15 +28,10 @@ import java.util.List;
 
 /**
  * @author: Song Ningning
- * @date: 2020-08-18 22:46
+ * @date: 2020-08-19 20:41
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ContextConfiguration(classes = CommunityApplication.class)
-public class ElasticsearchTests {
-
-    @Autowired
-    private DiscussPostMapper discussPostMapper;
+@Service
+public class ElasticsearchService {
 
     @Autowired
     private DiscussPostRepository discussPostRepository;
@@ -49,80 +39,42 @@ public class ElasticsearchTests {
     @Autowired
     private ElasticsearchTemplate template;
 
-    @Test
-    public void testInsert() {
-        discussPostRepository.save(discussPostMapper.selectDiscussPostById(241));
-        discussPostRepository.save(discussPostMapper.selectDiscussPostById(242));
-        discussPostRepository.save(discussPostMapper.selectDiscussPostById(243));
-    }
-
-    @Test
-    public void testInsertList() {
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(101, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(102, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(103, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(111, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(112, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(131, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(132, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(133, 0, 100));
-        discussPostRepository.saveAll(discussPostMapper.selectDiscussPosts(134, 0, 100));
-    }
-
-    @Test
-    public void testUpdate() {
-        DiscussPost post = discussPostMapper.selectDiscussPostById(231);
-        post.setContent("我是新人！");
+    /**
+     * 保存帖子
+     * @param post
+     */
+    public void saveDiscussPost(DiscussPost post) {
         discussPostRepository.save(post);
     }
 
-    @Test
-    public void testDelete() {
-        // discussPostRepository.deleteById(231);
-        // discussPostRepository.deleteAll();
+    /**
+     * 删除帖子
+     * @param id
+     */
+    public void deleteDiscussPost(int id) {
+        discussPostRepository.deleteById(id);
     }
 
-    @Test
-    public void testSearchByRepository() {
+    /**
+     * 搜索
+     * @param keyword 关键词
+     * @param current 当前页
+     * @param limit 每页数据限制
+     * @return
+     */
+    public Page<DiscussPost> searchDiscussPost(String keyword, int current, int limit) {
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.multiMatchQuery("互联网寒冬", "title", "content"))
+                .withQuery(QueryBuilders.multiMatchQuery(keyword, "title", "content"))
                 .withSort(SortBuilders.fieldSort("type").order(SortOrder.DESC))
                 .withSort(SortBuilders.fieldSort("score").order(SortOrder.DESC))
                 .withSort(SortBuilders.fieldSort("createTime").order(SortOrder.DESC))
-                .withPageable(PageRequest.of(0, 10))
+                .withPageable(PageRequest.of(current, limit))
                 .withHighlightFields(
                         new HighlightBuilder.Field("title").preTags("<em>").postTags("</em>"),
                         new HighlightBuilder.Field("content").preTags("<em>").postTags("</em>")
                 ).build();
 
-
-        // elasticTemplate.queryForPage(searchQuery, class, SearchResultMapper)
-        // 底层获取得到了高亮显示的值, 但是没有返回.
-        Page<DiscussPost> page = discussPostRepository.search(searchQuery);
-        System.out.println(page.getTotalElements());
-        System.out.println(page.getTotalPages());
-        System.out.println(page.getNumber());
-        System.out.println(page.getSize());
-
-        for (DiscussPost post : page) {
-            System.out.println(post);
-        }
-    }
-
-    @Test
-    public void testSearchByTemplate() {
-        SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.multiMatchQuery("互联网寒冬", "title", "content"))
-                .withSort(SortBuilders.fieldSort("type").order(SortOrder.DESC))
-                .withSort(SortBuilders.fieldSort("score").order(SortOrder.DESC))
-                .withSort(SortBuilders.fieldSort("createTime").order(SortOrder.DESC))
-                .withPageable(PageRequest.of(0, 10))
-                .withHighlightFields(
-                        new HighlightBuilder.Field("title").preTags("<em>").postTags("</em>"),
-                        new HighlightBuilder.Field("content").preTags("<em>").postTags("</em>")
-                ).build();
-
-        Page<DiscussPost> page = template.queryForPage(searchQuery, DiscussPost.class, new SearchResultMapper() {
+        return template.queryForPage(searchQuery, DiscussPost.class, new SearchResultMapper() {
             @Override
             public <T> AggregatedPage<T> mapResults(SearchResponse response, Class<T> clazz, Pageable pageable) {
                 SearchHits hits = response.getHits();
@@ -170,7 +122,7 @@ public class ElasticsearchTests {
                 }
 
                 return new AggregatedPageImpl(list, pageable,
-                hits.getTotalHits(), response.getAggregations(), response.getScrollId(), hits.getMaxScore());
+                        hits.getTotalHits(), response.getAggregations(), response.getScrollId(), hits.getMaxScore());
             }
 
             @Override
@@ -178,15 +130,5 @@ public class ElasticsearchTests {
                 return null;
             }
         });
-
-        System.out.println(page.getTotalElements());
-        System.out.println(page.getTotalPages());
-        System.out.println(page.getNumber());
-        System.out.println(page.getSize());
-
-        for (DiscussPost post : page) {
-            System.out.println(post);
-        }
     }
-
 }

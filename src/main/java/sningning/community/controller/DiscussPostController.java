@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sningning.community.entity.Comment;
-import sningning.community.entity.DiscussPost;
-import sningning.community.entity.Page;
-import sningning.community.entity.User;
+import sningning.community.entity.*;
+import sningning.community.event.EventProducer;
 import sningning.community.service.CommentService;
 import sningning.community.service.DiscussPostService;
 import sningning.community.service.LikeService;
@@ -46,6 +44,9 @@ public class DiscussPostController implements CommunityConstant {
     @Autowired
     private LikeService likeService;
 
+    @Autowired
+    private EventProducer eventProducer;
+
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String addDiscussPost(String title, String content) {
@@ -68,6 +69,16 @@ public class DiscussPostController implements CommunityConstant {
         post.setCommentCount(0);
         post.setScore(0.0);
         discussPostService.addDiscussPost(post);
+
+        // 触发发帖事件
+        Event event = new Event()
+                .setTopic(TOPIC_PUBLISH)
+                .setEntityUserId(user.getId())
+                .setEntityType(ENTITY_TYPE_POST)
+                .setEntityId(post.getId());
+
+        eventProducer.fireEvent(event);
+
         // 报错情况统一处理
         return CommunityUtil.getJSONString(0, "发布成功！");
     }

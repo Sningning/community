@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import sningning.community.entity.DiscussPost;
 import sningning.community.entity.Event;
 import sningning.community.entity.Message;
+import sningning.community.service.DiscussPostService;
+import sningning.community.service.ElasticsearchService;
 import sningning.community.service.MessageService;
 import sningning.community.util.CommunityConstant;
 
@@ -28,6 +31,12 @@ public class EventConsumer implements CommunityConstant  {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private DiscussPostService discussPostService;
+
+    @Autowired
+    private ElasticsearchService elasticsearchService;
 
     @KafkaListener(topics = {TOPIC_COMMENT, TOPIC_LIKE, TOPIC_FOLLOW})
     public void handleCommentMessage(ConsumerRecord record) {
@@ -65,5 +74,26 @@ public class EventConsumer implements CommunityConstant  {
         message.setContent(JSONObject.toJSONString(content));
 
         messageService.addMessage(message);
+    }
+
+    /**
+     * 消费发帖事件
+     * @param record
+     */
+    @KafkaListener(topics = {TOPIC_PUBLISH})
+    public void handlePublishMessage(ConsumerRecord record) {
+
+        if (record == null || record.value() == null) {
+            LOGGER.error("消息的内容为空！");
+            return;
+        }
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+        if (event == null) {
+            LOGGER.error("消息格式错误！");
+            return;
+        }
+
+        DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());
+        elasticsearchService.saveDiscussPost(post);
     }
 }
