@@ -98,7 +98,7 @@ public class DiscussPostController implements CommunityConstant {
         model.addAttribute("likeCount", likeCount);
 
         // 点赞状态
-        int likeStatus = hostHolder.getUser() == null ? null : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_POST, post.getId());
+        int likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_POST, post.getId());
         model.addAttribute("likeStatus", likeStatus);
 
         // 加载评论相关信息
@@ -129,7 +129,7 @@ public class DiscussPostController implements CommunityConstant {
                 commentVo.put("likeCount", likeCount);
 
                 // 点赞状态
-                likeStatus = hostHolder.getUser() == null ? null : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_COMMENT, comment.getId());
+                likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_COMMENT, comment.getId());
                 commentVo.put("likeStatus", likeStatus);
 
                 // 回复: 给评论的评论
@@ -155,7 +155,7 @@ public class DiscussPostController implements CommunityConstant {
                         replyVo.put("likeCount", likeCount);
 
                         // 点赞状态
-                        likeStatus = hostHolder.getUser() == null ? null : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_COMMENT, reply.getId());
+                        likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_COMMENT, reply.getId());
                         replyVo.put("likeStatus", likeStatus);
 
                         replyVoList.add(replyVo);

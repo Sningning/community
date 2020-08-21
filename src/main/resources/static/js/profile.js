@@ -4,6 +4,14 @@ $(function(){
 
 function follow() {
 	var btn = this;
+
+	// 发送 AJAX 请求前，将 csrf 令牌设置到请求的消息头中
+	let token = $("meta[name='_csrf']").attr("content");
+	let header = $("meta[name='_csrf_header']").attr("content");
+	$(document).ajaxSend(function (e, xhr, options) {
+		xhr.setRequestHeader(header, token);
+	});
+
 	if($(btn).hasClass("btn-info")) {
 		// 关注TA
 		$.post(

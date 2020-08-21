@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import sningning.community.controller.interceptor.AlphaInterceptor;
-import sningning.community.controller.interceptor.LoginRequiredInterceptor;
 import sningning.community.controller.interceptor.LoginTicketInterceptor;
 import sningning.community.controller.interceptor.MessageInterceptor;
 
@@ -23,8 +22,8 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Autowired
     private LoginTicketInterceptor loginTicketInterceptor;
 
-    @Autowired
-    private LoginRequiredInterceptor loginRequiredInterceptor;
+    // @Autowired
+    // private LoginRequiredInterceptor loginRequiredInterceptor;
 
     @Autowired
     private MessageInterceptor messageInterceptor;
@@ -45,8 +44,8 @@ public class WebMVCConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginTicketInterceptor)
                 .excludePathPatterns(cssPath, pngPath, jpgPath, jpegPath);
 
-        registry.addInterceptor(loginRequiredInterceptor)
-                .excludePathPatterns(cssPath, pngPath, jpgPath, jpegPath);
+        // registry.addInterceptor(loginRequiredInterceptor)
+        //         .excludePathPatterns(cssPath, pngPath, jpgPath, jpegPath);
 
         registry.addInterceptor(messageInterceptor)
                 .excludePathPatterns(cssPath, pngPath, jpgPath, jpegPath);
