@@ -13,7 +13,7 @@ public class HostHolder {
 
     private ThreadLocal<User> users = new ThreadLocal<>();
 
-    public void setUsers(User user) {
+    public void setUser(User user) {
         users.set(user);
     }
 

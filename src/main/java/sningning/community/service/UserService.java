@@ -300,14 +300,13 @@ public class UserService implements CommunityConstant {
         list.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                int type = user.getType();
-                switch (type) {
-                    case 0:
-                        return AUTHORITY_USER;
+                switch (user.getType()) {
                     case 1:
                         return AUTHORITY_ADMIN;
-                    default:
+                    case 2:
                         return AUTHORITY_MODERATOR;
+                    default:
+                        return AUTHORITY_USER;
                 }
             }
         });

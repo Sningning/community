@@ -35,6 +35,7 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 从 cookie 中获取凭证
         String ticket = CookieUtil.getValue(request, "ticket");
+
         if (ticket != null) {
             // 查询凭证
             LoginTicket loginTicket = userService.findLoginTicket(ticket);
@@ -42,14 +43,15 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
             if (loginTicket != null && loginTicket.getStatus() == 0 && loginTicket.getExpired().after(new Date())) {
                 // 根据凭证查询用户
                 User user = userService.findUserById(loginTicket.getUserId());
-                // 在本次请求中持有用户(使用 ThreadLocal)
-                hostHolder.setUsers(user);
-                // 构建用户认证的结果，并存入 SecurityContext，以便于 Security 进行授权
+                // 在本次请求中持有用户
+                hostHolder.setUser(user);
+                // 构建用户认证的结果,并存入 SecurityContext,以便于 Security 进行授权.
                 Authentication authentication = new UsernamePasswordAuthenticationToken(
                         user, user.getPassword(), userService.getAuthorities(user.getId()));
                 SecurityContextHolder.setContext(new SecurityContextImpl(authentication));
             }
         }
+
         return true;
     }
 
