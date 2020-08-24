@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import sningning.community.controller.interceptor.AlphaInterceptor;
+import sningning.community.controller.interceptor.DataInterceptor;
 import sningning.community.controller.interceptor.LoginTicketInterceptor;
 import sningning.community.controller.interceptor.MessageInterceptor;
 
@@ -28,6 +29,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Autowired
     private MessageInterceptor messageInterceptor;
 
+    @Autowired
+    private DataInterceptor dataInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         String cssPath = "/**/*.css";
@@ -48,6 +52,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
         //         .excludePathPatterns(cssPath, pngPath, jpgPath, jpegPath);
 
         registry.addInterceptor(messageInterceptor)
+                .excludePathPatterns(cssPath, pngPath, jpgPath, jpegPath);
+
+        registry.addInterceptor(dataInterceptor)
                 .excludePathPatterns(cssPath, pngPath, jpgPath, jpegPath);
     }
 }

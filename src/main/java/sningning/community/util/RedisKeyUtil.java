@@ -22,19 +22,23 @@ public class RedisKeyUtil {
 
     private static final String PREFIX_USER = "user";
 
+    private static final String PREFIX_UV = "uv";
+
+    private static final String PREFIX_DAU = "dau";
+
     /**
      * 某个实体的赞
      * like:entity:entityType:entityId -> set(userId)
      */
     public static String getEntityLikeKey(int entityType, int entityId) {
-        return PREFIX_ENTITY_LIKE + SPLIT + entityType + SPLIT +entityId;
+        return PREFIX_ENTITY_LIKE + SPLIT + entityType + SPLIT + entityId;
     }
 
     /**
      * 某个用户的赞
      * like:user:userId -> int
      */
-    public static String getUSerLikeKey(int userId) {
+    public static String getUserLikeKey(int userId) {
         return PREFIX_USER_LIKE + SPLIT + userId;
     }
 
@@ -56,6 +60,7 @@ public class RedisKeyUtil {
 
     /**
      * 登录验证码
+     *
      * @param owner 针对每一个将要登陆的用户生成的随机字符串
      * @return
      */
@@ -69,6 +74,7 @@ public class RedisKeyUtil {
 
     /**
      * 用户
+     *
      * @param userId
      * @return
      */
@@ -76,4 +82,45 @@ public class RedisKeyUtil {
         return PREFIX_USER + SPLIT + userId;
     }
 
+    /**
+     * 单日 UV
+     *
+     * @param date
+     * @return
+     */
+    public static String getUVKey(String date) {
+        return PREFIX_UV + SPLIT + date;
+    }
+
+    /**
+     * 区间 UV
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public static String getUVKey(String startDate, String endDate) {
+        return PREFIX_UV + SPLIT + startDate + SPLIT + endDate;
+    }
+
+    /**
+     * 单日活跃用户
+     *
+     * @param date
+     * @return
+     */
+    public static String getDAUKey(String date) {
+        return PREFIX_DAU + SPLIT + date;
+    }
+
+    /**
+     * 区间活跃用户
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public static String getDAUKey(String startDate, String endDate) {
+        return PREFIX_DAU + SPLIT + startDate + SPLIT + endDate;
+    }
 }
