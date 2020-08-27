@@ -18,9 +18,10 @@ public interface DiscussPostMapper {
      * @param userId 用户 id，为 0 时，不拼入 SQL 语句；不为 0 时，拼入 SQL 语句
      * @param offset 每页起始行行号
      * @param limit 每页显示的行数
+     * @param orderMode 排序模式 0-最新；1-分数
      * @return 查询到的帖子集合
      */
-    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit);
+    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit, int orderMode);
 
     // @Param 注解用于给参数取别名,
     // 如果只有一个参数,并且在<if>里使用,则必须加别名.
@@ -68,4 +69,12 @@ public interface DiscussPostMapper {
      * @return
      */
     int updateStatus(int id, int status);
+
+    /**
+     * 更新帖子分数
+     * @param id 帖子id
+     * @param score 帖子分数
+     * @return
+     */
+    int updateScore(int id, double score);
 }

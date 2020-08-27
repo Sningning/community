@@ -24,17 +24,19 @@ public class DiscussPostService {
 
     /**
      * 分页查询帖子
+     *
      * @param userId 用户 id，为 0 时，不拼入 SQL 语句；不为 0 时，拼入 SQL 语句
      * @param offset 每页起始行行号
-     * @param limit 每页显示的行数
+     * @param limit  每页显示的行数
      * @return 查询到的帖子集合
      */
-    public List<DiscussPost> findDiscussPost(int userId, int offset, int limit) {
-        return discussPostMapper.selectDiscussPosts(userId, offset, limit);
+    public List<DiscussPost> findDiscussPost(int userId, int offset, int limit, int orderMode) {
+        return discussPostMapper.selectDiscussPosts(userId, offset, limit, orderMode);
     }
 
     /**
      * 查询帖子总数
+     *
      * @param userId 用户 id，为 0 时，不拼入 SQL 语句；不为 0 时，拼入 SQL 语句
      * @return 帖子总数
      */
@@ -44,6 +46,7 @@ public class DiscussPostService {
 
     /**
      * 发布帖子
+     *
      * @param post
      * @return
      */
@@ -66,42 +69,55 @@ public class DiscussPostService {
 
     /**
      * 根据帖子id查看特定帖子
+     *
      * @param id 帖子id
      * @return
      */
-     public DiscussPost findDiscussPostById(int id) {
+    public DiscussPost findDiscussPostById(int id) {
         return discussPostMapper.selectDiscussPostById(id);
-     }
+    }
 
     /**
      * 更新帖子评论数量
-     * @param id 帖子id
+     *
+     * @param id           帖子id
      * @param commentCount 评论数量
      * @return
      */
-     public int updateCommentCount(int id, int commentCount) {
-         return discussPostMapper.updateCommentCount(id, commentCount);
-     }
+    public int updateCommentCount(int id, int commentCount) {
+        return discussPostMapper.updateCommentCount(id, commentCount);
+    }
 
     /**
      * 更新帖子类型
      *
-     * @param id 帖子id
+     * @param id   帖子id
      * @param type 帖子类型
      * @return
      */
-     public int updateType(int id, int type) {
-         return discussPostMapper.updateType(id, type);
-     }
+    public int updateType(int id, int type) {
+        return discussPostMapper.updateType(id, type);
+    }
 
     /**
      * 更新帖子状态
      *
-     * @param id 帖子id
+     * @param id     帖子id
      * @param status 状态
      * @return
      */
-     public int updateStatus(int id, int status) {
-         return discussPostMapper.updateStatus(id, status);
-     }
+    public int updateStatus(int id, int status) {
+        return discussPostMapper.updateStatus(id, status);
+    }
+
+    /**
+     * 更新帖子分数
+     *
+     * @param id    帖子id
+     * @param score 分数
+     * @return
+     */
+    public int updateScore(int id, double score) {
+        return discussPostMapper.updateScore(id, score);
+    }
 }

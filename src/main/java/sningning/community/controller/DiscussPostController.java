@@ -2,6 +2,7 @@ package sningning.community.controller;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import sningning.community.service.UserService;
 import sningning.community.util.CommunityConstant;
 import sningning.community.util.CommunityUtil;
 import sningning.community.util.HostHolder;
+import sningning.community.util.RedisKeyUtil;
 
 import java.util.*;
 
@@ -46,6 +48,9 @@ public class DiscussPostController implements CommunityConstant {
 
     @Autowired
     private EventProducer eventProducer;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     @ResponseBody
@@ -78,6 +83,10 @@ public class DiscussPostController implements CommunityConstant {
                 .setEntityId(post.getId());
 
         eventProducer.fireEvent(event);
+
+        // 计算帖子分数
+        String postKey = RedisKeyUtil.getPostScoreKey();
+        redisTemplate.opsForSet().add(postKey, post.getId());
 
         // 报错情况统一处理
         return CommunityUtil.getJSONString(0, "发布成功！");
@@ -214,6 +223,10 @@ public class DiscussPostController implements CommunityConstant {
                 .setEntityType(ENTITY_TYPE_POST)
                 .setEntityId(id);
         eventProducer.fireEvent(event);
+
+        // 计算帖子分数
+        String postKey = RedisKeyUtil.getPostScoreKey();
+        redisTemplate.opsForSet().add(postKey, id);
 
         return CommunityUtil.getJSONString(0);
     }

@@ -80,7 +80,7 @@ public class MapperTests {
     @Test
     public void testSelectPosts() {
 
-        List<DiscussPost> list = discussPostMapper.selectDiscussPosts(149, 0, 10);
+        List<DiscussPost> list = discussPostMapper.selectDiscussPosts(149, 0, 10, 0);
         list.forEach(System.out::println);
 
         int rows = discussPostMapper.selectDiscussPostRows(149);

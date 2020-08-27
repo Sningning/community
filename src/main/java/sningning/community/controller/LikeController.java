@@ -1,6 +1,7 @@
 package sningning.community.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import sningning.community.service.LikeService;
 import sningning.community.util.CommunityConstant;
 import sningning.community.util.CommunityUtil;
 import sningning.community.util.HostHolder;
+import sningning.community.util.RedisKeyUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +33,9 @@ public class LikeController implements CommunityConstant {
 
     @Autowired
     private EventProducer eventProducer;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @RequestMapping(path = "/like", method = RequestMethod.POST)
     @ResponseBody
@@ -60,6 +65,11 @@ public class LikeController implements CommunityConstant {
             eventProducer.fireEvent(event);
         }
 
+        if (entityType == ENTITY_TYPE_POST) {
+            // 计算帖子分数
+            String postKey = RedisKeyUtil.getPostScoreKey();
+            redisTemplate.opsForSet().add(postKey, postId);
+        }
         return CommunityUtil.getJSONString(0, null, map);
     }
 }

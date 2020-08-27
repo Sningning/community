@@ -3,8 +3,6 @@ package sningning.community.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -135,7 +133,7 @@ public class AlphaService {
     /**
      * 让该方法在多线程环境下，被异步调用
      */
-    @Async
+    // @Async
     public void execute1() {
         LOGGER.debug("execute1");
     }
@@ -143,7 +141,7 @@ public class AlphaService {
     /**
      * 让该方法在多线程环境下，被异步调用
      */
-    @Scheduled(initialDelay = 5000, fixedRate = 1000)
+    // @Scheduled(initialDelay = 5000, fixedRate = 1000)
     public void execute2() {
         LOGGER.debug("execute2");
     }
