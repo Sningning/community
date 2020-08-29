@@ -35,7 +35,7 @@ public class DiscussPostService {
     private SensitiveFilter sensitiveFilter;
 
     @Value("${caffeine.posts.maxsize}")
-    private int maxSize;
+    private Integer maxSize;
 
     @Value("${caffeine.posts.expire-seconds}")
     private long expireSeconds;
@@ -76,8 +76,8 @@ public class DiscussPostService {
                             throw new IllegalArgumentException("参数错误！");
                         }
 
-                        int offset = Integer.parseInt(params[0]);
-                        int limit = Integer.parseInt(params[1]);
+                        Integer offset = Integer.parseInt(params[0]);
+                        Integer limit = Integer.parseInt(params[1]);
 
                         // 省略了二级缓存：Redis
 
@@ -106,12 +106,12 @@ public class DiscussPostService {
     /**
      * 分页查询帖子
      *
-     * @param userId 用户 id，为 0 时，不拼入 SQL 语句；不为 0 时，拼入 SQL 语句
+     * @param userId 用户 id，为 0 时，不查询所有；不为 0 时，查询指定用户的帖子
      * @param offset 每页起始行行号
      * @param limit  每页显示的行数
      * @return 查询到的帖子集合
      */
-    public List<DiscussPost> findDiscussPost(int userId, int offset, int limit, int orderMode) {
+    public List<DiscussPost> findDiscussPost(Integer userId, Integer offset, Integer limit, Integer orderMode) {
         // 只有当显示首页并且查看热门帖子时才查缓存
         if (userId == 0 && orderMode == 1) {
             return postListCache.get(offset + ":" + limit);
@@ -126,7 +126,7 @@ public class DiscussPostService {
      * @param userId 用户 id。为 0 时，查询总行数；不为 0 时，查询指定用户的帖子总数。
      * @return 帖子总数
      */
-    public int findDiscussPostRows(int userId) {
+    public Integer findDiscussPostRows(Integer userId) {
         if (userId == 0) {
             return postRowsCache.get(userId);
         }
@@ -140,7 +140,7 @@ public class DiscussPostService {
      * @param post
      * @return
      */
-    public int addDiscussPost(DiscussPost post) {
+    public Integer addDiscussPost(DiscussPost post) {
         // 判空
         if (post == null) {
             throw new IllegalArgumentException("参数不能为空");
@@ -163,7 +163,7 @@ public class DiscussPostService {
      * @param id 帖子id
      * @return
      */
-    public DiscussPost findDiscussPostById(int id) {
+    public DiscussPost findDiscussPostById(Integer id) {
         return discussPostMapper.selectDiscussPostById(id);
     }
 
@@ -174,7 +174,7 @@ public class DiscussPostService {
      * @param commentCount 评论数量
      * @return
      */
-    public int updateCommentCount(int id, int commentCount) {
+    public Integer updateCommentCount(Integer id, Integer commentCount) {
         return discussPostMapper.updateCommentCount(id, commentCount);
     }
 
@@ -185,7 +185,7 @@ public class DiscussPostService {
      * @param type 帖子类型
      * @return
      */
-    public int updateType(int id, int type) {
+    public Integer updateType(Integer id, Integer type) {
         return discussPostMapper.updateType(id, type);
     }
 
@@ -196,7 +196,7 @@ public class DiscussPostService {
      * @param status 状态
      * @return
      */
-    public int updateStatus(int id, int status) {
+    public Integer updateStatus(Integer id, Integer status) {
         return discussPostMapper.updateStatus(id, status);
     }
 
@@ -207,7 +207,7 @@ public class DiscussPostService {
      * @param score 分数
      * @return
      */
-    public int updateScore(int id, double score) {
+    public Integer updateScore(Integer id, double score) {
         return discussPostMapper.updateScore(id, score);
     }
 }

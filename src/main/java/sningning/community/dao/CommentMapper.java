@@ -21,7 +21,7 @@ public interface CommentMapper {
      * @param limit      页数上限
      * @return
      */
-    List<Comment> selectCommentsByEntity(int entityType, int entityId, int offset, int limit);
+    List<Comment> selectCommentsByEntity(Integer entityType, Integer entityId, Integer offset, Integer limit);
 
     /**
      * 通过实体类型查询评论总数
@@ -30,7 +30,7 @@ public interface CommentMapper {
      * @param entityId
      * @return 评论总数
      */
-    int selectCountByEntity(int entityType, int entityId);
+    Integer selectCountByEntity(Integer entityType, Integer entityId);
 
     /**
      * 插入评论
@@ -38,7 +38,7 @@ public interface CommentMapper {
      * @param comment
      * @return
      */
-    int insertComment(Comment comment);
+    Integer insertComment(Comment comment);
 
     /**
      * 通过帖子 id 查询对应的帖子
@@ -46,5 +46,5 @@ public interface CommentMapper {
      * @param id 帖子 id
      * @return
      */
-    Comment selectCommentById(int id);
+    Comment selectCommentById(Integer id);
 }

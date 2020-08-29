@@ -19,22 +19,22 @@ public class Event {
     /**
      * 消息的来源者
      */
-    private int userId;
+    private Integer userId;
 
     /**
      * 消息的目标实体
      */
-    private int entityType;
+    private Integer entityType;
 
     /**
      * 消息的目标实体的id
      */
-    private int entityId;
+    private Integer entityId;
 
     /**
      * 消息的目标实体的作者
      */
-    private int entityUserId;
+    private Integer entityUserId;
 
     /**
      * 其他数据
@@ -56,38 +56,38 @@ public class Event {
         return this;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public Event setUserId(int userId) {
+    public Event setUserId(Integer userId) {
         this.userId = userId;
         return this;
     }
 
-    public int getEntityType() {
+    public Integer getEntityType() {
         return entityType;
     }
 
-    public Event setEntityType(int entityType) {
+    public Event setEntityType(Integer entityType) {
         this.entityType = entityType;
         return this;
     }
 
-    public int getEntityId() {
+    public Integer getEntityId() {
         return entityId;
     }
 
-    public Event setEntityId(int entityId) {
+    public Event setEntityId(Integer entityId) {
         this.entityId = entityId;
         return this;
     }
 
-    public int getEntityUserId() {
+    public Integer getEntityUserId() {
         return entityUserId;
     }
 
-    public Event setEntityUserId(int entityUserId) {
+    public Event setEntityUserId(Integer entityUserId) {
         this.entityUserId = entityUserId;
         return this;
     }

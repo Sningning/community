@@ -39,7 +39,7 @@ public class CommunityUtil {
      * @param map
      * @return
      */
-    public static String getJSONString(int code, String msg, Map<String, Object> map) {
+    public static String getJSONString(Integer code, String msg, Map<String, Object> map) {
         JSONObject json = new JSONObject();
         json.put("code", code);
         json.put("msg", msg);
@@ -51,11 +51,11 @@ public class CommunityUtil {
         return json.toJSONString();
     }
 
-    public static String getJSONString(int code, String msg) {
+    public static String getJSONString(Integer code, String msg) {
         return getJSONString(code, msg, null);
     }
 
-    public static String getJSONString(int code) {
+    public static String getJSONString(Integer code) {
         return getJSONString(code, null, null);
     }
 

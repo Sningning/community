@@ -180,7 +180,7 @@ public class UserController implements CommunityConstant {
         // 用户
         model.addAttribute("user", user);
         // 被赞数量
-        int likeCount = likeService.findUserLikeCount(userId);
+        Integer likeCount = likeService.findUserLikeCount(userId);
         model.addAttribute("likeCount", likeCount);
 
         // 关注数量

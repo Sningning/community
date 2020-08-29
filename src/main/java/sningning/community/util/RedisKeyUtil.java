@@ -32,15 +32,15 @@ public class RedisKeyUtil {
      * 某个实体的赞
      * like:entity:entityType:entityId -> set(userId)
      */
-    public static String getEntityLikeKey(int entityType, int entityId) {
+    public static String getEntityLikeKey(Integer entityType, Integer entityId) {
         return PREFIX_ENTITY_LIKE + SPLIT + entityType + SPLIT + entityId;
     }
 
     /**
      * 某个用户的赞
-     * like:user:userId -> int
+     * like:user:userId -> Integer
      */
-    public static String getUserLikeKey(int userId) {
+    public static String getUserLikeKey(Integer userId) {
         return PREFIX_USER_LIKE + SPLIT + userId;
     }
 
@@ -48,7 +48,7 @@ public class RedisKeyUtil {
      * 某个用户关注的实体
      * followee:userId:entityType -> zset(entityId,now)
      */
-    public static String getFolloweeKey(int userId, int entityType) {
+    public static String getFolloweeKey(Integer userId, Integer entityType) {
         return PREFIX_FOLLOWEE + SPLIT + userId + SPLIT + entityType;
     }
 
@@ -56,7 +56,7 @@ public class RedisKeyUtil {
      * 某个实体拥有的粉丝
      * follower:entityType:entityId -> zset(userId,now)
      */
-    public static String getFollowerKey(int entityType, int entityId) {
+    public static String getFollowerKey(Integer entityType, Integer entityId) {
         return PREFIX_FOLLOWER + SPLIT + entityType + SPLIT + entityId;
     }
 
@@ -80,7 +80,7 @@ public class RedisKeyUtil {
      * @param userId
      * @return
      */
-    public static String getUserKey(int userId) {
+    public static String getUserKey(Integer userId) {
         return PREFIX_USER + SPLIT + userId;
     }
 

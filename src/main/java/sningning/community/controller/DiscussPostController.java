@@ -93,7 +93,7 @@ public class DiscussPostController implements CommunityConstant {
     }
 
     @RequestMapping(path = "/detail/{discussPostId}", method = RequestMethod.GET)
-    public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, Model model, Page page) {
+    public String getDiscussPost(@PathVariable("discussPostId") Integer discussPostId, Model model, Page page) {
 
         // 帖子
         DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
@@ -107,7 +107,7 @@ public class DiscussPostController implements CommunityConstant {
         model.addAttribute("likeCount", likeCount);
 
         // 点赞状态
-        int likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_POST, post.getId());
+        Integer likeStatus = hostHolder.getUser() == null ? 0 : likeService.findEntityLikeStatus(hostHolder.getUser().getId(), ENTITY_TYPE_POST, post.getId());
         model.addAttribute("likeStatus", likeStatus);
 
         // 加载评论相关信息
@@ -173,7 +173,7 @@ public class DiscussPostController implements CommunityConstant {
                 commentVo.put("replies", replyVoList);
 
                 // 回复数量
-                int replyCount = commentService.findCommentCount(ENTITY_TYPE_COMMENT, comment.getId());
+                Integer replyCount = commentService.findCommentCount(ENTITY_TYPE_COMMENT, comment.getId());
                 commentVo.put("replyCount", replyCount);
 
                 commentVoList.add(commentVo);
@@ -193,7 +193,7 @@ public class DiscussPostController implements CommunityConstant {
      */
     @RequestMapping(path = "/top", method = RequestMethod.POST)
     @ResponseBody
-    public String setTop(int id) {
+    public String setTop(Integer id) {
         discussPostService.updateType(id, 1);
 
         // 触发发帖事件
@@ -215,7 +215,7 @@ public class DiscussPostController implements CommunityConstant {
      */
     @RequestMapping(path = "/wonderful", method = RequestMethod.POST)
     @ResponseBody
-    public String setWonderful(int id) {
+    public String setWonderful(Integer id) {
         discussPostService.updateStatus(id, 1);
 
         // 触发发帖事件
@@ -241,7 +241,7 @@ public class DiscussPostController implements CommunityConstant {
      */
     @RequestMapping(path = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public String setDelete(int id) {
+    public String setDelete(Integer id) {
         discussPostService.updateStatus(id, 2);
 
         // 触发删帖事件

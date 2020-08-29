@@ -37,7 +37,7 @@ public class HomeController implements CommunityConstant {
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String getIndexPage(Model model, Page page,
-                               @RequestParam(name = "orderMode", defaultValue = "0") int orderMode) {
+                               @RequestParam(name = "orderMode", defaultValue = "0") Integer orderMode) {
 
         // 方法调用前,SpringMVC 会自动实例化 Model 和 Page, 并将 Page 注入 Model.
         // 所以,在 thymeleaf 中可以直接访问 Page 对象中的数据.

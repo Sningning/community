@@ -71,7 +71,7 @@ public class DataService {
      *
      * @param userId
      */
-    public void recordDAU(int userId) {
+    public void recordDAU(Integer userId) {
         String redisKey = RedisKeyUtil.getDAUKey(sdf.format(new Date()));
         redisTemplate.opsForValue().setBit(redisKey, userId, true);
     }

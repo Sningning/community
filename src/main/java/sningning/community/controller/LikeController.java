@@ -39,14 +39,14 @@ public class LikeController implements CommunityConstant {
 
     @RequestMapping(path = "/like", method = RequestMethod.POST)
     @ResponseBody
-    public String like(int entityType, int entityId, int entityUserId, int postId) {
+    public String like(Integer entityType, Integer entityId, Integer entityUserId, Integer postId) {
         User user = hostHolder.getUser();
         // 点赞
         likeService.like(user.getId(), entityType, entityId, entityUserId);
         // 数量
         long likeCount = likeService.findEntityLikeCount(entityType, entityId);
         // 点赞状态
-        int likeStatus = likeService.findEntityLikeStatus(user.getId(), entityType, entityId);
+        Integer likeStatus = likeService.findEntityLikeStatus(user.getId(), entityType, entityId);
 
         // 返回结果
         Map<String, Object> map = new HashMap<>();
@@ -65,7 +65,7 @@ public class LikeController implements CommunityConstant {
             eventProducer.fireEvent(event);
         }
 
-        if (entityType == ENTITY_TYPE_POST) {
+        if (entityType.equals(ENTITY_TYPE_POST)) {
             // 计算帖子分数
             String postKey = RedisKeyUtil.getPostScoreKey();
             redisTemplate.opsForSet().add(postKey, postId);

@@ -53,7 +53,7 @@ public class ElasticsearchService {
      *
      * @param id
      */
-    public void deleteDiscussPost(int id) {
+    public void deleteDiscussPost(Integer id) {
         discussPostRepository.deleteById(id);
     }
 
@@ -65,7 +65,7 @@ public class ElasticsearchService {
      * @param limit   每页数据限制
      * @return
      */
-    public Page<DiscussPost> searchDiscussPost(String keyword, int current, int limit) {
+    public Page<DiscussPost> searchDiscussPost(String keyword, Integer current, Integer limit) {
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
                 .withQuery(QueryBuilders.multiMatchQuery(keyword, "title", "content"))
                 .withSort(SortBuilders.fieldSort("type").order(SortOrder.DESC))

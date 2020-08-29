@@ -22,7 +22,7 @@ public interface DiscussPostMapper {
      * @param orderMode 排序模式 0-最新；1-分数
      * @return 查询到的帖子集合
      */
-    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit, int orderMode);
+    List<DiscussPost> selectDiscussPosts(Integer userId, Integer offset, Integer limit, Integer orderMode);
 
     // @Param 注解用于给参数取别名,
     // 如果只有一个参数,并且在<if>里使用,则必须加别名.
@@ -33,7 +33,7 @@ public interface DiscussPostMapper {
      * @param userId 用户 id。为 0 时，查询总行数；不为 0 时，查询指定用户的帖子总数。
      * @return DiscussPost 表中数据总数
      */
-    int selectDiscussPostRows(@Param("userId") int userId);
+    Integer selectDiscussPostRows(@Param("userId") Integer userId);
 
     /**
      * 插入帖子
@@ -41,7 +41,7 @@ public interface DiscussPostMapper {
      * @param discussPost
      * @return
      */
-    int insertDiscussPost(DiscussPost discussPost);
+    Integer insertDiscussPost(DiscussPost discussPost);
 
     /**
      * 根据id查看帖子详情
@@ -49,7 +49,7 @@ public interface DiscussPostMapper {
      * @param id 帖子id
      * @return
      */
-    DiscussPost selectDiscussPostById(int id);
+    DiscussPost selectDiscussPostById(Integer id);
 
     /**
      * 更新帖子评论数量
@@ -58,7 +58,7 @@ public interface DiscussPostMapper {
      * @param commentCount 评论数量
      * @return
      */
-    int updateCommentCount(int id, int commentCount);
+    Integer updateCommentCount(Integer id, Integer commentCount);
 
     /**
      * 更新帖子类型
@@ -67,7 +67,7 @@ public interface DiscussPostMapper {
      * @param type 帖子类型
      * @return
      */
-    int updateType(int id, int type);
+    Integer updateType(Integer id, Integer type);
 
     /**
      * 更新帖子状态
@@ -76,7 +76,7 @@ public interface DiscussPostMapper {
      * @param status 帖子状态
      * @return
      */
-    int updateStatus(int id, int status);
+    Integer updateStatus(Integer id, Integer status);
 
     /**
      * 更新帖子分数
@@ -85,5 +85,5 @@ public interface DiscussPostMapper {
      * @param score 帖子分数
      * @return
      */
-    int updateScore(int id, double score);
+    Integer updateScore(Integer id, double score);
 }

@@ -38,7 +38,7 @@ public class CommentService implements CommunityConstant {
      * @param limit      页数上限
      * @return
      */
-    public List<Comment> findCommentsByEntity(int entityType, int entityId, int offset, int limit) {
+    public List<Comment> findCommentsByEntity(Integer entityType, Integer entityId, Integer offset, Integer limit) {
         return commentMapper.selectCommentsByEntity(entityType, entityId, offset, limit);
     }
 
@@ -49,7 +49,7 @@ public class CommentService implements CommunityConstant {
      * @param entityId
      * @return
      */
-    public int findCommentCount(int entityType, int entityId) {
+    public Integer findCommentCount(Integer entityType, Integer entityId) {
         return commentMapper.selectCountByEntity(entityType, entityId);
     }
 
@@ -60,7 +60,7 @@ public class CommentService implements CommunityConstant {
      * @return
      */
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public int addComment(Comment comment) {
+    public Integer addComment(Comment comment) {
         if (comment == null) {
             throw new IllegalArgumentException("参数不能为空！");
         }
@@ -69,11 +69,11 @@ public class CommentService implements CommunityConstant {
         // 过滤敏感词
         comment.setContent(sensitiveFilter.filter(comment.getContent()));
         // 添加评论
-        int rows = commentMapper.insertComment(comment);
+        Integer rows = commentMapper.insertComment(comment);
 
         // 更新帖子的评论数量
-        if (comment.getEntityType() == ENTITY_TYPE_POST) {
-            int count = commentMapper.selectCountByEntity(comment.getEntityType(), comment.getEntityId());
+        if (comment.getEntityType().equals(ENTITY_TYPE_POST)) {
+            Integer count = commentMapper.selectCountByEntity(comment.getEntityType(), comment.getEntityId());
             discussPostService.updateCommentCount(comment.getEntityId(), count);
         }
 
@@ -86,7 +86,7 @@ public class CommentService implements CommunityConstant {
      * @param id 帖子 id
      * @return
      */
-    public Comment findCommentById(int id) {
+    public Comment findCommentById(Integer id) {
         return commentMapper.selectCommentById(id);
     }
 }

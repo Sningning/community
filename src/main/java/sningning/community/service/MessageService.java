@@ -31,7 +31,7 @@ public class MessageService implements CommunityConstant {
      * @param limit  每页数量，用于分页
      * @return
      */
-    public List<Message> findConversations(int userId, int offset, int limit) {
+    public List<Message> findConversations(Integer userId, Integer offset, Integer limit) {
         return messageMapper.selectConversations(userId, offset, limit);
     }
 
@@ -41,7 +41,7 @@ public class MessageService implements CommunityConstant {
      * @param userId 用户id
      * @return
      */
-    public int findConversationCount(int userId) {
+    public Integer findConversationCount(Integer userId) {
         return messageMapper.selectConversationCount(userId);
     }
 
@@ -53,7 +53,7 @@ public class MessageService implements CommunityConstant {
      * @param limit          每页数量，用于分页
      * @return
      */
-    public List<Message> findLettersDesc(String conversationId, int offset, int limit) {
+    public List<Message> findLettersDesc(String conversationId, Integer offset, Integer limit) {
         return messageMapper.selectLettersDesc(conversationId, offset, limit);
     }
 
@@ -65,7 +65,7 @@ public class MessageService implements CommunityConstant {
      * @param limit          每页数量，用于分页
      * @return
      */
-    public List<Message> findLettersAsc(String conversationId, int offset, int limit) {
+    public List<Message> findLettersAsc(String conversationId, Integer offset, Integer limit) {
         return messageMapper.selectLettersAsc(conversationId, offset, limit);
     }
 
@@ -75,7 +75,7 @@ public class MessageService implements CommunityConstant {
      * @param conversationId
      * @return
      */
-    public int findLetterCount(String conversationId) {
+    public Integer findLetterCount(String conversationId) {
         return messageMapper.selectLetterCount(conversationId);
     }
 
@@ -86,7 +86,7 @@ public class MessageService implements CommunityConstant {
      * @param conversationId
      * @return conversationId 如果为空，返回所有未读私信数量；如果不为空，返回 conversationId 表示的会话中未读私信数量
      */
-    public int findLetterUnreadCount(int userId, String conversationId) {
+    public Integer findLetterUnreadCount(Integer userId, String conversationId) {
         return messageMapper.selectLetterUnreadCount(userId, conversationId);
     }
 
@@ -96,7 +96,7 @@ public class MessageService implements CommunityConstant {
      * @param message
      * @return
      */
-    public int addMessage(Message message) {
+    public Integer addMessage(Message message) {
         message.setContent(HtmlUtils.htmlEscape(message.getContent()));
         message.setContent(sensitiveFilter.filter(message.getContent()));
         return messageMapper.insertMessage(message);
@@ -108,7 +108,7 @@ public class MessageService implements CommunityConstant {
      * @param ids
      * @return
      */
-    public int readMessage(List<Integer> ids) {
+    public Integer readMessage(List<Integer> ids) {
         return messageMapper.updateStatus(ids, READ);
     }
 
@@ -119,7 +119,7 @@ public class MessageService implements CommunityConstant {
      * @param topic
      * @return
      */
-    public Message findLatestNotice(int userId, String topic) {
+    public Message findLatestNotice(Integer userId, String topic) {
         return messageMapper.selectLatestNotice(userId, topic);
     }
 
@@ -130,7 +130,7 @@ public class MessageService implements CommunityConstant {
      * @param topic
      * @return
      */
-    public int findNoticeCount(int userId, String topic) {
+    public Integer findNoticeCount(Integer userId, String topic) {
         return messageMapper.selectNoticeCount(userId, topic);
     }
 
@@ -141,7 +141,7 @@ public class MessageService implements CommunityConstant {
      * @param topic
      * @return
      */
-    public int findNoticeUnreadCount(int userId, String topic) {
+    public Integer findNoticeUnreadCount(Integer userId, String topic) {
         return messageMapper.selectNoticeUnreadCount(userId, topic);
     }
 
@@ -154,7 +154,7 @@ public class MessageService implements CommunityConstant {
      * @param limit
      * @return
      */
-    public List<Message> findNotices(int userId, String topic, int offset, int limit) {
+    public List<Message> findNotices(Integer userId, String topic, Integer offset, Integer limit) {
         return messageMapper.selectNotices(userId, topic, offset, limit);
     }
 

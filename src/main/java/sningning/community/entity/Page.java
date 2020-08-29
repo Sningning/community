@@ -11,15 +11,15 @@ public class Page {
     /**
      * 当前页码
      */
-    private int current = 1;
+    private Integer current = 1;
     /**
      * 显示的上限
      */
-    private int limit = 10;
+    private Integer limit = 10;
     /**
      * 数据总数（用于计算总页数）
      */
-    private int rows;
+    private Integer rows;
     /**
      * 查询路径（用来复用分页的链接）
      */
@@ -29,7 +29,7 @@ public class Page {
     /**
      * 获取当前页的起始行
      */
-    public int getOffset() {
+    public Integer getOffset() {
         // 当前页 * 每页数量 = 每页最后一行
         // 每页最后一行 - 每页数量 = 当前页起始行
         // current * limit - limit
@@ -39,7 +39,7 @@ public class Page {
     /**
      * 获取总页数
      */
-    public int getTotal() {
+    public Integer getTotal() {
         // rows / limit 或 (rows / limit) + 1
         if (rows % limit == 0) {
             return rows / limit;
@@ -51,45 +51,45 @@ public class Page {
     /**
      * 获取起始页码（显示5个页码）
      */
-    public int getFrom() {
-        int from = current - 2;
+    public Integer getFrom() {
+        Integer from = current - 2;
         return from < 1 ? 1 : from;
     }
 
     /**
      * 获取结束页码（显示5个页码）
      */
-    public int getTo() {
-        int to = current + 2;
-        int total = getTotal();
+    public Integer getTo() {
+        Integer to = current + 2;
+        Integer total = getTotal();
         return to > total ? total : to;
     }
 
-    public int getCurrent() {
+    public Integer getCurrent() {
         return current;
     }
 
-    public void setCurrent(int current) {
+    public void setCurrent(Integer current) {
         if (current >= 1) {
             this.current = current;
         }
     }
 
-    public int getLimit() {
+    public Integer getLimit() {
         return limit;
     }
 
-    public void setLimit(int limit) {
+    public void setLimit(Integer limit) {
         if (limit >= 1 && limit <= 100) {
             this.limit = limit;
         }
     }
 
-    public int getRows() {
+    public Integer getRows() {
         return rows;
     }
 
-    public void setRows(int rows) {
+    public void setRows(Integer rows) {
         if (rows >= 1) {
             this.rows = rows;
         }

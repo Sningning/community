@@ -62,7 +62,7 @@ public class MessageController implements CommunityConstant {
                 map.put("letterCount", messageService.findLetterCount(message.getConversationId()));
                 map.put("unreadCount", messageService.findLetterUnreadCount(
                         user.getId(), message.getConversationId()));
-                int targetId = user.getId() == message.getFromId() ? message.getToId() : message.getFromId();
+                int targetId = user.getId().equals(message.getFromId()) ? message.getToId() : message.getFromId();
                 map.put("target", userService.findUserById(targetId));
 
                 conversations.add(map);
@@ -126,7 +126,7 @@ public class MessageController implements CommunityConstant {
         List<Integer> ids = new ArrayList<>();
         if (letterList != null) {
             for (Message letter : letterList) {
-                if (letter.getToId() == hostHolder.getUser().getId() && letter.getStatus() == UNREAD) {
+                if (letter.getToId().equals(hostHolder.getUser().getId()) && letter.getStatus().equals(UNREAD)) {
                     ids.add(letter.getId());
                 }
             }
@@ -159,7 +159,7 @@ public class MessageController implements CommunityConstant {
         User target = userService.findUserByName(toName);
         if (target == null) {
             return CommunityUtil.getJSONString(-1, "目标用户不存在！");
-        } else if (target.getId() == hostHolder.getUser().getId()) {
+        } else if (target.getId().equals(hostHolder.getUser().getId())) {
             return CommunityUtil.getJSONString(-1, "不能给自己发私信！");
         }
 

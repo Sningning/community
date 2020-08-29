@@ -26,7 +26,7 @@
         limit #{offset}, #{limit};
     </select>
 
-    <select id="selectConversationCount" resultType="int">
+    <select id="selectConversationCount" resultType="Integer">
         select count(m.maxid) from (
             select max(id) as maxid from message
             where status != 2
@@ -56,7 +56,7 @@
         limit #{offset}, #{limit};
     </select>
 
-    <select id="selectLetterCount" resultType="int">
+    <select id="selectLetterCount" resultType="Integer">
         select count(id)
         from message
         where status != 2
@@ -64,7 +64,7 @@
         and conversation_id = #{conversationId}
     </select>
 
-    <select id="selectLetterUnreadCount" resultType="int">
+    <select id="selectLetterUnreadCount" resultType="Integer">
         select count(id)
         from message
         where status = 0
@@ -100,7 +100,7 @@
         )
     </select>
 
-    <select id="selectNoticeCount" resultType="int">
+    <select id="selectNoticeCount" resultType="Integer">
         select count(id)
         from message
         where status != 2
@@ -109,7 +109,7 @@
         and conversation_id = #{topic}
     </select>
 
-    <select id="selectNoticeUnreadCount" resultType="int">
+    <select id="selectNoticeUnreadCount" resultType="Integer">
         select count(id)
         from message
         where status = 0

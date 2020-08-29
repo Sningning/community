@@ -3,28 +3,30 @@ package sningning.community.entity;
 import java.util.Date;
 
 /**
+ * 评论
+ *
  * @author: Song Ningning
  * @date: 2020-08-07 11:24
  */
 public class Comment {
 
-    private int id;
-    private int userId;
+    private Integer id;
+    private Integer userId;
     /**
      * 实体类型
      * 指明针对什么进行评论，比如：针对帖子进行评论、针对别人的评论进行回复
      */
-    private int entityType;
+    private Integer entityType;
     /**
      * 实体类型id
      * 用于指明指定类型中具体哪一项
      */
-    private int entityId;
+    private Integer entityId;
     /**
      * 目标id
      * 用于指明当前评论是针对用户 id 为 targetId 的评论
      */
-    private int targetId;
+    private Integer targetId;
     /**
      * 评论具体内容
      */
@@ -33,49 +35,49 @@ public class Comment {
      * 帖子状态
      * 0-正常；1-被禁用
      */
-    private int status;
+    private Integer status;
     /**
      * 评论时间
      */
     private Date createTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public int getEntityType() {
+    public Integer getEntityType() {
         return entityType;
     }
 
-    public void setEntityType(int entityType) {
+    public void setEntityType(Integer entityType) {
         this.entityType = entityType;
     }
 
-    public int getEntityId() {
+    public Integer getEntityId() {
         return entityId;
     }
 
-    public void setEntityId(int entityId) {
+    public void setEntityId(Integer entityId) {
         this.entityId = entityId;
     }
 
-    public int getTargetId() {
+    public Integer getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(int targetId) {
+    public void setTargetId(Integer targetId) {
         this.targetId = targetId;
     }
 
@@ -87,11 +89,11 @@ public class Comment {
         this.content = content;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -113,7 +115,7 @@ public class Comment {
                 ", targetId=" + targetId +
                 ", content='" + content + '\'' +
                 ", status=" + status +
-                ", createTim=" + createTime +
+                ", createTime=" + createTime +
                 '}';
     }
 }

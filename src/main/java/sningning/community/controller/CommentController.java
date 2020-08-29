@@ -42,7 +42,7 @@ public class CommentController implements CommunityConstant {
     private RedisTemplate redisTemplate;
 
     @RequestMapping(path = "/add/{discussPostId}", method = RequestMethod.POST)
-    public String addComment(@PathVariable("discussPostId") int discussPostId, Comment comment) {
+    public String addComment(@PathVariable("discussPostId") Integer discussPostId, Comment comment) {
         comment.setUserId(hostHolder.getUser().getId());
         comment.setStatus(0);
         comment.setCreateTime(new Date());
@@ -59,10 +59,10 @@ public class CommentController implements CommunityConstant {
         // 评论的目标是帖子或评论
 
         // 如果评论的目标是帖子
-        if (comment.getEntityType() == ENTITY_TYPE_POST) {
+        if (comment.getEntityType().equals(ENTITY_TYPE_POST)) {
             DiscussPost target = discussPostService.findDiscussPostById(comment.getEntityId());
             event.setEntityUserId(target.getUserId());
-        } else if (comment.getEntityType() == ENTITY_TYPE_COMMENT) {
+        } else if (comment.getEntityType().equals(ENTITY_TYPE_COMMENT)) {
             // 如果评论的目标是评论
             Comment target = commentService.findCommentById(comment.getEntityId());
             event.setEntityUserId(target.getUserId());
@@ -71,7 +71,7 @@ public class CommentController implements CommunityConstant {
         eventProducer.fireEvent(event);
 
         // 触发发帖事件
-        if (comment.getEntityType() == ENTITY_TYPE_POST) {
+        if (comment.getEntityType().equals(ENTITY_TYPE_POST)) {
             event = new Event()
                     .setTopic(TOPIC_PUBLISH)
                     .setEntityUserId(comment.getUserId())

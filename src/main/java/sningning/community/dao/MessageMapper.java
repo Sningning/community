@@ -20,7 +20,7 @@ public interface MessageMapper {
      * @param limit  每页数量，用于分页
      * @return 最新的会话排在最前
      */
-    List<Message> selectConversations(int userId, int offset, int limit);
+    List<Message> selectConversations(Integer userId, Integer offset, Integer limit);
 
     /**
      * 查询当前用户的会话数量
@@ -28,7 +28,7 @@ public interface MessageMapper {
      * @param userId 用户id
      * @return 当前用户的会话数量
      */
-    int selectConversationCount(int userId);
+    Integer selectConversationCount(Integer userId);
 
     /**
      * 查询某个会话所包含的私信列表
@@ -39,7 +39,7 @@ public interface MessageMapper {
      * @param limit          每页数量，用于分页
      * @return 最新的消息排在最前
      */
-    List<Message> selectLettersDesc(String conversationId, int offset, int limit);
+    List<Message> selectLettersDesc(String conversationId, Integer offset, Integer limit);
 
     /**
      * 查询某个会话所包含的私信列表
@@ -50,7 +50,7 @@ public interface MessageMapper {
      * @param limit          每页数量，用于分页
      * @return 最新的消息排在最后
      */
-    List<Message> selectLettersAsc(String conversationId, int offset, int limit);
+    List<Message> selectLettersAsc(String conversationId, Integer offset, Integer limit);
 
     /**
      * 查询某个会话所包含的私信数量
@@ -58,7 +58,7 @@ public interface MessageMapper {
      * @param conversationId 会话id
      * @return
      */
-    int selectLetterCount(String conversationId);
+    Integer selectLetterCount(String conversationId);
 
     /**
      * 查询未读私信数量
@@ -67,14 +67,14 @@ public interface MessageMapper {
      * @param conversationId 会话id
      * @return conversationId 如果为空，返回所有未读私信数量；如果不为空，返回 conversationId 表示的会话中未读私信数量
      */
-    int selectLetterUnreadCount(int userId, String conversationId);
+    Integer selectLetterUnreadCount(Integer userId, String conversationId);
 
     /**
      * 新增一条消息
      *
      * @return
      */
-    int insertMessage(Message message);
+    Integer insertMessage(Message message);
 
     /**
      * 修改消息状态
@@ -83,7 +83,7 @@ public interface MessageMapper {
      * @param status
      * @return
      */
-    int updateStatus(List<Integer> ids, int status);
+    Integer updateStatus(List<Integer> ids, Integer status);
 
     /**
      * 查询某个主题下最新的通知
@@ -92,7 +92,7 @@ public interface MessageMapper {
      * @param topic
      * @return
      */
-    Message selectLatestNotice(int userId, String topic);
+    Message selectLatestNotice(Integer userId, String topic);
 
     /**
      * 查询某个主题所包含的通知数量
@@ -101,7 +101,7 @@ public interface MessageMapper {
      * @param topic
      * @return
      */
-    int selectNoticeCount(int userId, String topic);
+    Integer selectNoticeCount(Integer userId, String topic);
 
     /**
      * 查询未读通知的数量
@@ -110,7 +110,7 @@ public interface MessageMapper {
      * @param topic
      * @return
      */
-    int selectNoticeUnreadCount(int userId, String topic);
+    Integer selectNoticeUnreadCount(Integer userId, String topic);
 
     /**
      * 查询某个主题所包含的通知列表
@@ -121,5 +121,5 @@ public interface MessageMapper {
      * @param limit
      * @return
      */
-    List<Message> selectNotices(int userId, String topic, int offset, int limit);
+    List<Message> selectNotices(Integer userId, String topic, Integer offset, Integer limit);
 }

@@ -92,8 +92,8 @@ public class LoginController implements CommunityConstant {
      * @return
      */
     @RequestMapping(path = "/activation/{userId}/{code}", method = RequestMethod.GET)
-    public String activate(Model model, @PathVariable("userId") int userId, @PathVariable("code") String code) {
-        int result = userService.activate(userId, code);
+    public String activate(Model model, @PathVariable("userId") Integer userId, @PathVariable("code") String code) {
+        Integer result = userService.activate(userId, code);
         if (result == ACTIVATION_SUCCESS) {
             model.addAttribute("msg", "激活成功！");
             model.addAttribute("target", "/login");
@@ -174,7 +174,7 @@ public class LoginController implements CommunityConstant {
         }
 
         // 检查账号、密码
-        int expiredSeconds = rememberme ? REMEMBER_EXPIRED_TIME : DEFAULT_EXPIRED_TIME;
+        Integer expiredSeconds = rememberme ? REMEMBER_EXPIRED_TIME : DEFAULT_EXPIRED_TIME;
         Map<String, Object> loginMap = userService.login(username, password, expiredSeconds);
 
         if (loginMap.containsKey("ticket")) {

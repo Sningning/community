@@ -54,7 +54,7 @@ public class UserService implements CommunityConstant {
      * @param id 用户 id
      * @return 查询到的用户
      */
-    public User findUserById(int id) {
+    public User findUserById(Integer id) {
         // return userMapper.selectById(id);
         User user = getCache(id);
         if (user == null) {
@@ -133,7 +133,7 @@ public class UserService implements CommunityConstant {
      * @param code   激活码
      * @return
      */
-    public int activate(int userId, String code) {
+    public Integer activate(Integer userId, String code) {
         User user = userMapper.selectById(userId);
         if (user.getStatus() == 1) {
             return ACTIVATION_REPEAT;
@@ -154,7 +154,7 @@ public class UserService implements CommunityConstant {
      * @param expiredSeconds 过期时间
      * @return
      */
-    public Map<String, Object> login(String username, String password, int expiredSeconds) {
+    public Map<String, Object> login(String username, String password, Integer expiredSeconds) {
         Map<String, Object> map = new HashMap<>();
 
         // 空值判断
@@ -233,9 +233,9 @@ public class UserService implements CommunityConstant {
      * @param headerUrl 新头像 url
      * @return
      */
-    public int updateHeader(int userId, String headerUrl) {
+    public Integer updateHeader(Integer userId, String headerUrl) {
         // return userMapper.updateHeader(userId, headerUrl);
-        int rows = userMapper.updateHeader(userId, headerUrl);
+        Integer rows = userMapper.updateHeader(userId, headerUrl);
         clearCache(userId);
         return rows;
     }
@@ -247,9 +247,9 @@ public class UserService implements CommunityConstant {
      * @param password 新密码
      * @return
      */
-    public int updatePassword(int userId, String password) {
+    public Integer updatePassword(Integer userId, String password) {
         // return userMapper.updatePassword(userId, password);
-        int rows = userMapper.updatePassword(userId, password);
+        Integer rows = userMapper.updatePassword(userId, password);
         clearCache(userId);
         return rows;
     }
@@ -270,7 +270,7 @@ public class UserService implements CommunityConstant {
      * @param userId
      * @return
      */
-    private User getCache(int userId) {
+    private User getCache(Integer userId) {
         String redisKey = RedisKeyUtil.getUserKey(userId);
         return (User) redisTemplate.opsForValue().get(redisKey);
     }
@@ -281,7 +281,7 @@ public class UserService implements CommunityConstant {
      * @param userId
      * @return
      */
-    private User initCache(int userId) {
+    private User initCache(Integer userId) {
         User user = userMapper.selectById(userId);
         String redisKey = RedisKeyUtil.getUserKey(userId);
         redisTemplate.opsForValue().set(redisKey, user, 1, TimeUnit.HOURS);
@@ -293,7 +293,7 @@ public class UserService implements CommunityConstant {
      *
      * @param userId
      */
-    private void clearCache(int userId) {
+    private void clearCache(Integer userId) {
         String redisKey = RedisKeyUtil.getUserKey(userId);
         redisTemplate.delete(redisKey);
     }
@@ -304,7 +304,7 @@ public class UserService implements CommunityConstant {
      * @param userId
      * @return
      */
-    public Collection<? extends GrantedAuthority> getAuthorities(int userId) {
+    public Collection<? extends GrantedAuthority> getAuthorities(Integer userId) {
         User user = this.findUserById(userId);
         List<GrantedAuthority> list = new ArrayList<>();
         list.add(new GrantedAuthority() {

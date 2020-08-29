@@ -22,7 +22,7 @@ public interface LoginTicketMapper {
             "values(#{userId},#{ticket},#{status},#{expired})"
     })
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    int insertLoginTicket(LoginTicket loginTicket);
+    Integer insertLoginTicket(LoginTicket loginTicket);
 
     /**
      * 通过 ticket 查询 LoginTicket
@@ -47,5 +47,5 @@ public interface LoginTicketMapper {
             "update login_ticket set status=#{status} ",
             "where ticket=#{ticket} "
     })
-    int updateStatus(String ticket, int status);
+    Integer updateStatus(String ticket, Integer status);
 }

@@ -50,7 +50,7 @@ public class FollowController implements CommunityConstant {
     @RequestMapping(path = "/follow", method = RequestMethod.POST)
     @ResponseBody
     @LoginRequired
-    public String follow(int entityType, int entityId) {
+    public String follow(Integer entityType, Integer entityId) {
         User user = hostHolder.getUser();
         followService.follow(user.getId(), entityType, entityId);
 
@@ -76,7 +76,7 @@ public class FollowController implements CommunityConstant {
     @RequestMapping(path = "/unfollow", method = RequestMethod.POST)
     @ResponseBody
     @LoginRequired
-    public String unfollow(int entityType, int entityId) {
+    public String unfollow(Integer entityType, Integer entityId) {
         User user = hostHolder.getUser();
         followService.unfollow(user.getId(), entityType, entityId);
         return CommunityUtil.getJSONString(0, "已取消关注！");
@@ -91,7 +91,7 @@ public class FollowController implements CommunityConstant {
      * @return
      */
     @RequestMapping(path = "/followee/{userId}", method = RequestMethod.GET)
-    public String getFollowee(@PathVariable("userId") int userId, Page page, Model model) {
+    public String getFollowee(@PathVariable("userId") Integer userId, Page page, Model model) {
 
         User user = userService.findUserById(userId);
         if (user == null) {
@@ -125,7 +125,7 @@ public class FollowController implements CommunityConstant {
      * @return
      */
     @RequestMapping(path = "/follower/{userId}", method = RequestMethod.GET)
-    public String getFollowers(@PathVariable("userId") int userId, Page page, Model model) {
+    public String getFollowers(@PathVariable("userId") Integer userId, Page page, Model model) {
 
         User user = userService.findUserById(userId);
         if (user == null) {
@@ -156,7 +156,7 @@ public class FollowController implements CommunityConstant {
      * @param userId
      * @return
      */
-    private boolean hasFollowed(int userId) {
+    private boolean hasFollowed(Integer userId) {
         if (hostHolder.getUser() == null) {
             return false;
         }

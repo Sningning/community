@@ -10,15 +10,21 @@ import java.util.Date;
  */
 public class User {
 
-    private int id;
+    private Integer id;
     private String username;
     private String password;
     private String salt;
     private String email;
-    // 0-普通用户; 1-超级管理员; 2-版主
-    private int type;
-    // 0-未激活; 1-已激活
-    private int status;
+
+    /**
+     * 0-普通用户; 1-超级管理员; 2-版主
+     */
+    private Integer type;
+
+    /**
+     * 0-未激活; 1-已激活
+     */
+    private Integer status;
     private String activationCode;
     private String headerUrl;
     private Date createTime;
@@ -26,7 +32,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String salt, String email, int type, int status, String activationCode, String headerUrl, Date createTime) {
+    public User(Integer id, String username, String password, String salt, String email, Integer type, Integer status, String activationCode, String headerUrl, Date createTime) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -39,11 +45,11 @@ public class User {
         this.createTime = createTime;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -79,19 +85,19 @@ public class User {
         this.email = email;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

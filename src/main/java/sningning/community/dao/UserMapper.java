@@ -17,7 +17,7 @@ public interface UserMapper {
      * @param id 用户 id
      * @return 查询到的用户信息
      */
-    User selectById(int id);
+    User selectById(Integer id);
 
     /**
      * 根据姓名查询用户
@@ -41,7 +41,7 @@ public interface UserMapper {
      * @param user 待添加的用户信息
      * @return 影响数据库的行数
      */
-    int insertUser(User user);
+    Integer insertUser(User user);
 
     /**
      * 更新用户状态
@@ -50,7 +50,7 @@ public interface UserMapper {
      * @param status 状态值
      * @return 影响数据库的行数
      */
-    int updateStatus(int id, int status);
+    Integer updateStatus(Integer id, Integer status);
 
     /**
      * 更新用户头像
@@ -59,7 +59,7 @@ public interface UserMapper {
      * @param headerUrl 头像地址
      * @return 影响数据库的行数
      */
-    int updateHeader(int id, String headerUrl);
+    Integer updateHeader(Integer id, String headerUrl);
 
     /**
      * 更新用户密码
@@ -68,5 +68,5 @@ public interface UserMapper {
      * @param password 新密码
      * @return 影响数据库的行数
      */
-    int updatePassword(int id, String password);
+    Integer updatePassword(Integer id, String password);
 }

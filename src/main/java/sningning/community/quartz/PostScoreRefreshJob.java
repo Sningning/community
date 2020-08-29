@@ -80,7 +80,7 @@ public class PostScoreRefreshJob implements Job, CommunityConstant {
         // 是否是精华帖
         boolean wonderful = post.getStatus() == 1;
         // 获取帖子评论数
-        int commentCount = post.getCommentCount();
+        Integer commentCount = post.getCommentCount();
         // 获取帖子点赞数
         long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, postId);
 

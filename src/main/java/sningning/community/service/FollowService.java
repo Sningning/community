@@ -32,7 +32,7 @@ public class FollowService implements CommunityConstant {
      * @param entityType
      * @param entityId
      */
-    public void follow(int userId, int entityType, int entityId) {
+    public void follow(Integer userId, Integer entityType, Integer entityId) {
         redisTemplate.execute(new SessionCallback() {
             @Override
             public Object execute(RedisOperations operations) throws DataAccessException {
@@ -59,7 +59,7 @@ public class FollowService implements CommunityConstant {
      * @param entityType
      * @param entityId
      */
-    public void unfollow(int userId, int entityType, int entityId) {
+    public void unfollow(Integer userId, Integer entityType, Integer entityId) {
         redisTemplate.execute(new SessionCallback() {
             @Override
             public Object execute(RedisOperations operations) throws DataAccessException {
@@ -86,7 +86,7 @@ public class FollowService implements CommunityConstant {
      * @param entityType
      * @return
      */
-    public long findFolloweeCount(int userId, int entityType) {
+    public long findFolloweeCount(Integer userId, Integer entityType) {
         String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
         return redisTemplate.opsForZSet().zCard(followeeKey);
     }
@@ -98,7 +98,7 @@ public class FollowService implements CommunityConstant {
      * @param entityId
      * @return
      */
-    public long findFollowerCount(int entityType, int entityId) {
+    public long findFollowerCount(Integer entityType, Integer entityId) {
         String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
         return redisTemplate.opsForZSet().zCard(followerKey);
     }
@@ -111,7 +111,7 @@ public class FollowService implements CommunityConstant {
      * @param entityId
      * @return
      */
-    public boolean hasFollowed(int userId, int entityType, int entityId) {
+    public boolean hasFollowed(Integer userId, Integer entityType, Integer entityId) {
         String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
         return redisTemplate.opsForZSet().score(followeeKey, entityId) != null;
     }
@@ -124,7 +124,7 @@ public class FollowService implements CommunityConstant {
      * @param limit
      * @return
      */
-    public List<Map<String, Object>> findFollowee(int userId, int offset, int limit) {
+    public List<Map<String, Object>> findFollowee(Integer userId, Integer offset, Integer limit) {
         String followeeKey = RedisKeyUtil.getFolloweeKey(userId, ENTITY_TYPE_USER);
         Set<Integer> targetIds = redisTemplate.opsForZSet().reverseRange(followeeKey, offset, offset + limit - 1);
 
@@ -152,7 +152,7 @@ public class FollowService implements CommunityConstant {
      * @param limit
      * @return
      */
-    public List<Map<String, Object>> findFollowers(int userId, int offset, int limit) {
+    public List<Map<String, Object>> findFollowers(Integer userId, Integer offset, Integer limit) {
         String followerKey = RedisKeyUtil.getFollowerKey(ENTITY_TYPE_USER, userId);
         Set<Integer> targetIds = redisTemplate.opsForZSet().reverseRange(followerKey, offset, offset + limit - 1);
 

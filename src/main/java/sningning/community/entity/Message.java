@@ -8,18 +8,18 @@ import java.util.Date;
  */
 public class Message {
 
-    private int id;
+    private Integer id;
 
     /**
      * 发件人
      * <p>
      * 系统用户为 1
      */
-    private int fromId;
+    private Integer fromId;
     /**
      * 收件人
      */
-    private int toId;
+    private Integer toId;
     /**
      * 会话id
      * <p>
@@ -44,33 +44,33 @@ public class Message {
      * 私信状态
      * 0-未读;1-已读;2-已删除
      */
-    private int status;
+    private Integer status;
     /**
      * 发送时间
      */
     private Date createTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getFromId() {
+    public Integer getFromId() {
         return fromId;
     }
 
-    public void setFromId(int fromId) {
+    public void setFromId(Integer fromId) {
         this.fromId = fromId;
     }
 
-    public int getToId() {
+    public Integer getToId() {
         return toId;
     }
 
-    public void setToId(int toId) {
+    public void setToId(Integer toId) {
         this.toId = toId;
     }
 
@@ -90,11 +90,11 @@ public class Message {
         this.content = content;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

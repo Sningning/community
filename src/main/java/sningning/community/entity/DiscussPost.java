@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.util.Date;
 
 /**
- * 帖子实体类
+ * 帖子
  *
  * @author: Song Ningning
  * @date: 2020-04-22 22:25
@@ -17,10 +17,10 @@ import java.util.Date;
 public class DiscussPost {
 
     @Id
-    private int id;
+    private Integer id;
 
     @Field(type = FieldType.Integer)
-    private int userId;
+    private Integer userId;
 
     @Field(type = FieldType.Text, analyzer = "ik_max_word", searchAnalyzer = "ik_smart")
     private String title;
@@ -31,19 +31,19 @@ public class DiscussPost {
      * 0-普通; 1-置顶
      */
     @Field(type = FieldType.Integer)
-    private int type;
+    private Integer type;
 
     /**
      * 0-正常; 1-精华; 2-拉黑
      */
     @Field(type = FieldType.Integer)
-    private int status;
+    private Integer status;
 
     @Field(type = FieldType.Date)
     private Date createTime;
 
     @Field(type = FieldType.Integer)
-    private int commentCount;
+    private Integer commentCount;
 
     @Field(type = FieldType.Double)
     private double score;
@@ -51,7 +51,7 @@ public class DiscussPost {
     public DiscussPost() {
     }
 
-    public DiscussPost(int id, int userId, String title, String content, int type, int status, Date createTime, int commentCount, double score) {
+    public DiscussPost(Integer id, Integer userId, String title, String content, Integer type, Integer status, Date createTime, Integer commentCount, double score) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -63,19 +63,19 @@ public class DiscussPost {
         this.score = score;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -95,19 +95,19 @@ public class DiscussPost {
         this.content = content;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -119,11 +119,11 @@ public class DiscussPost {
         this.createTime = createTime;
     }
 
-    public int getCommentCount() {
+    public Integer getCommentCount() {
         return commentCount;
     }
 
-    public void setCommentCount(int commentCount) {
+    public void setCommentCount(Integer commentCount) {
         this.commentCount = commentCount;
     }
 

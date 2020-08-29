@@ -27,7 +27,7 @@
         limit #{offset}, #{limit}
     </select>
 
-    <select id="selectDiscussPostRows" resultType="int">
+    <select id="selectDiscussPostRows" resultType="Integer">
         select count(id)
         from discuss_post
         where status != 2
