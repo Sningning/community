@@ -64,11 +64,11 @@ public class AlphaService {
 
     /**
      * 声明式事务
-     *
+     * <p>
      * 常用的传播机制：
-     *     REQUIRED: 支持当前事务(外部事务),如果不存在则创建新事务.
-     *     REQUIRES_NEW: 创建一个新事务,并且暂停当前事务(外部事务).
-     *     NESTED: 如果当前存在事务(外部事务),则嵌套在该事务中执行(独立的提交和回滚),否则就会REQUIRED一样.
+     * REQUIRED: 支持当前事务(外部事务),如果不存在则创建新事务.
+     * REQUIRES_NEW: 创建一个新事务,并且暂停当前事务(外部事务).
+     * NESTED: 如果当前存在事务(外部事务),则嵌套在该事务中执行(独立的提交和回滚),否则就会REQUIRED一样.
      */
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
     public String save1() {

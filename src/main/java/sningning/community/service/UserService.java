@@ -50,6 +50,7 @@ public class UserService implements CommunityConstant {
 
     /**
      * 根据用户 id 查询用户
+     *
      * @param id 用户 id
      * @return 查询到的用户
      */
@@ -64,6 +65,7 @@ public class UserService implements CommunityConstant {
 
     /**
      * 注册
+     *
      * @param user
      * @return
      */
@@ -126,8 +128,9 @@ public class UserService implements CommunityConstant {
 
     /**
      * 激活账号
+     *
      * @param userId 用户 id
-     * @param code 激活码
+     * @param code   激活码
      * @return
      */
     public int activate(int userId, String code) {
@@ -145,8 +148,9 @@ public class UserService implements CommunityConstant {
 
     /**
      * 登录账户
-     * @param username 账号
-     * @param password 密码
+     *
+     * @param username       账号
+     * @param password       密码
      * @param expiredSeconds 过期时间
      * @return
      */
@@ -200,6 +204,7 @@ public class UserService implements CommunityConstant {
 
     /**
      * 登出账号
+     *
      * @param ticket
      */
     public void logout(String ticket) {
@@ -212,6 +217,7 @@ public class UserService implements CommunityConstant {
 
     /**
      * 查询凭证
+     *
      * @param ticket
      * @return
      */
@@ -222,7 +228,8 @@ public class UserService implements CommunityConstant {
 
     /**
      * 更新头像
-     * @param userId 用户名
+     *
+     * @param userId    用户名
      * @param headerUrl 新头像 url
      * @return
      */
@@ -235,7 +242,8 @@ public class UserService implements CommunityConstant {
 
     /**
      * 修改密码
-     * @param userId 用户名
+     *
+     * @param userId   用户名
      * @param password 新密码
      * @return
      */
@@ -248,6 +256,7 @@ public class UserService implements CommunityConstant {
 
     /**
      * 根据用户名查询用户
+     *
      * @param username 用户名
      * @return
      */
@@ -263,7 +272,7 @@ public class UserService implements CommunityConstant {
      */
     private User getCache(int userId) {
         String redisKey = RedisKeyUtil.getUserKey(userId);
-        return (User)redisTemplate.opsForValue().get(redisKey);
+        return (User) redisTemplate.opsForValue().get(redisKey);
     }
 
     /**
@@ -291,6 +300,7 @@ public class UserService implements CommunityConstant {
 
     /**
      * 根据用户id查询权限
+     *
      * @param userId
      * @return
      */

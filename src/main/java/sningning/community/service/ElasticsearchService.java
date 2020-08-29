@@ -41,6 +41,7 @@ public class ElasticsearchService {
 
     /**
      * 保存帖子
+     *
      * @param post
      */
     public void saveDiscussPost(DiscussPost post) {
@@ -49,6 +50,7 @@ public class ElasticsearchService {
 
     /**
      * 删除帖子
+     *
      * @param id
      */
     public void deleteDiscussPost(int id) {
@@ -57,9 +59,10 @@ public class ElasticsearchService {
 
     /**
      * 搜索
+     *
      * @param keyword 关键词
      * @param current 当前页
-     * @param limit 每页数据限制
+     * @param limit   每页数据限制
      * @return
      */
     public Page<DiscussPost> searchDiscussPost(String keyword, int current, int limit) {

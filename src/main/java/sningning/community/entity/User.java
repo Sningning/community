@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * 用户实体类
+ *
  * @author: Song Ningning
  * @date: 2020-04-21 23:07
  */

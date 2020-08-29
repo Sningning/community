@@ -31,10 +31,11 @@ public class CommentService implements CommunityConstant {
 
     /**
      * 通过 entity 查询评论
+     *
      * @param entityType
      * @param entityId
-     * @param offset 当前页的起始行
-     * @param limit 页数上限
+     * @param offset     当前页的起始行
+     * @param limit      页数上限
      * @return
      */
     public List<Comment> findCommentsByEntity(int entityType, int entityId, int offset, int limit) {
@@ -43,6 +44,7 @@ public class CommentService implements CommunityConstant {
 
     /**
      * 通过 entity 查询评论总数
+     *
      * @param entityType
      * @param entityId
      * @return
@@ -53,6 +55,7 @@ public class CommentService implements CommunityConstant {
 
     /**
      * 增加评论
+     *
      * @param comment
      * @return
      */
@@ -79,6 +82,7 @@ public class CommentService implements CommunityConstant {
 
     /**
      * 通过帖子 id 查询帖子
+     *
      * @param id 帖子 id
      * @return
      */

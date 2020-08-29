@@ -187,6 +187,7 @@ public class DiscussPostController implements CommunityConstant {
 
     /**
      * 置顶
+     *
      * @param id
      * @return
      */
@@ -208,6 +209,7 @@ public class DiscussPostController implements CommunityConstant {
 
     /**
      * 加精
+     *
      * @param id
      * @return
      */
@@ -233,6 +235,7 @@ public class DiscussPostController implements CommunityConstant {
 
     /**
      * 删帖
+     *
      * @param id
      * @return
      */

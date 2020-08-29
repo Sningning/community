@@ -5,6 +5,7 @@ import sningning.community.entity.User;
 
 /**
  * 持有用户的信息，用于代替 session 对象
+ *
  * @author: Song Ningning
  * @date: 2020-08-04 20:38
  */

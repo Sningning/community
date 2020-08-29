@@ -20,6 +20,7 @@ public class AlphaInterceptor implements HandlerInterceptor {
 
     /**
      * 在 Controller 之前执行
+     *
      * @param request
      * @param response
      * @param handler
@@ -34,6 +35,7 @@ public class AlphaInterceptor implements HandlerInterceptor {
 
     /**
      * 在 Controller 之后执行
+     *
      * @param request
      * @param response
      * @param handler
@@ -47,6 +49,7 @@ public class AlphaInterceptor implements HandlerInterceptor {
 
     /**
      * 在 TemplateEngine 之后执行
+     *
      * @param request
      * @param response
      * @param handler

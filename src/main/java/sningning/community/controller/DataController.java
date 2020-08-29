@@ -22,6 +22,7 @@ public class DataController {
 
     /**
      * 统计页面
+     *
      * @return
      */
     @RequestMapping(path = "/data", method = {RequestMethod.GET, RequestMethod.POST})
@@ -31,8 +32,9 @@ public class DataController {
 
     /**
      * 统计网站UV
+     *
      * @param start 开始时间
-     * @param end 结束时间
+     * @param end   结束时间
      * @return
      */
     @RequestMapping(path = "/data/uv", method = RequestMethod.POST)
@@ -48,6 +50,7 @@ public class DataController {
 
     /**
      * 统计活跃用户
+     *
      * @param start
      * @param end
      * @param model
@@ -55,8 +58,8 @@ public class DataController {
      */
     @RequestMapping(path = "/data/dau", method = RequestMethod.POST)
     public String getDAU(@DateTimeFormat(pattern = "yyyy-MM-dd") Date start,
-                        @DateTimeFormat(pattern = "yyyy-MM-dd") Date end,
-                        Model model) {
+                         @DateTimeFormat(pattern = "yyyy-MM-dd") Date end,
+                         Model model) {
         long dau = dataService.calculateDAU(start, end);
         model.addAttribute("dauResult", dau);
         model.addAttribute("dauStartDate", start);

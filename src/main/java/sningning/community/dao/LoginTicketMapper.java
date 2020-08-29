@@ -13,6 +13,7 @@ public interface LoginTicketMapper {
 
     /**
      * 插入 LoginTicket
+     *
      * @param loginTicket
      * @return
      */
@@ -25,6 +26,7 @@ public interface LoginTicketMapper {
 
     /**
      * 通过 ticket 查询 LoginTicket
+     *
      * @param ticket
      * @return
      */
@@ -36,6 +38,7 @@ public interface LoginTicketMapper {
 
     /**
      * 更改 ticket 状态
+     *
      * @param ticket
      * @param status 状态
      * @return

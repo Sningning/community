@@ -2,6 +2,7 @@ package sningning.community.entity;
 
 /**
  * 封装分页相关的信息
+ *
  * @author: Song Ningning
  * @date: 2020-04-23 0:54
  */

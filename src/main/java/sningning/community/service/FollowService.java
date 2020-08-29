@@ -27,6 +27,7 @@ public class FollowService implements CommunityConstant {
 
     /**
      * 关注
+     *
      * @param userId
      * @param entityType
      * @param entityId
@@ -53,6 +54,7 @@ public class FollowService implements CommunityConstant {
 
     /**
      * 取消关注
+     *
      * @param userId
      * @param entityType
      * @param entityId
@@ -79,6 +81,7 @@ public class FollowService implements CommunityConstant {
 
     /**
      * 查询关注的实体数量
+     *
      * @param userId
      * @param entityType
      * @return
@@ -90,6 +93,7 @@ public class FollowService implements CommunityConstant {
 
     /**
      * 查询实体粉丝数量
+     *
      * @param entityType
      * @param entityId
      * @return
@@ -101,6 +105,7 @@ public class FollowService implements CommunityConstant {
 
     /**
      * 查询当前用户是否已关注该实体
+     *
      * @param userId
      * @param entityType
      * @param entityId
@@ -113,6 +118,7 @@ public class FollowService implements CommunityConstant {
 
     /**
      * 查询某用户关注的人
+     *
      * @param userId
      * @param offset
      * @param limit
@@ -140,6 +146,7 @@ public class FollowService implements CommunityConstant {
 
     /**
      * 查询某用户的粉丝
+     *
      * @param userId
      * @param offset
      * @param limit

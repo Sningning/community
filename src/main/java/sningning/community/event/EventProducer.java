@@ -8,6 +8,7 @@ import sningning.community.entity.Event;
 
 /**
  * 事件生产者
+ *
  * @author: Song Ningning
  * @date: 2020-08-15 22:07
  */
@@ -19,6 +20,7 @@ public class EventProducer {
 
     /**
      * 处理事件
+     *
      * @param event
      */
     public void fireEvent(Event event) {

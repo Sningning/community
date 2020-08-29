@@ -69,6 +69,7 @@ public class LikeService {
 
     /**
      * 查询某个用户获得的赞
+     *
      * @param userId
      * @return
      */

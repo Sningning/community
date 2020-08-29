@@ -42,6 +42,7 @@ public class FollowController implements CommunityConstant {
 
     /**
      * 关注用户
+     *
      * @param entityType
      * @param entityId
      * @return
@@ -67,6 +68,7 @@ public class FollowController implements CommunityConstant {
 
     /**
      * 取消关注
+     *
      * @param entityType
      * @param entityId
      * @return
@@ -82,6 +84,7 @@ public class FollowController implements CommunityConstant {
 
     /**
      * 获取指定用户所关注的人
+     *
      * @param userId 用户 id
      * @param page
      * @param model
@@ -115,6 +118,7 @@ public class FollowController implements CommunityConstant {
 
     /**
      * 获取指定用户的粉丝
+     *
      * @param userId 用户 id
      * @param page
      * @param model
@@ -148,6 +152,7 @@ public class FollowController implements CommunityConstant {
 
     /**
      * 查询当前登录用户是否已关注 id 为 userId 的用户
+     *
      * @param userId
      * @return
      */

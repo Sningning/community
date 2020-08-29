@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * 事件
+ *
  * @author: Song Ningning
  * @date: 2020-08-15 21:57
  */
@@ -46,6 +47,7 @@ public class Event {
 
     /**
      * set 方法执行完后，返回当前对象，可以进行链式调用
+     *
      * @param topic
      * @return 当前对象
      */

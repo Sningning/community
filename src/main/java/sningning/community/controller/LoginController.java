@@ -62,6 +62,7 @@ public class LoginController implements CommunityConstant {
 
     /**
      * 注册账户
+     *
      * @param model
      * @param user
      * @return
@@ -84,9 +85,10 @@ public class LoginController implements CommunityConstant {
     /**
      * 激活账户
      * 路径格式：http://localhost:8080/community/activation/101/code
+     *
      * @param model
      * @param userId 用户id
-     * @param code 激活码
+     * @param code   激活码
      * @return
      */
     @RequestMapping(path = "/activation/{userId}/{code}", method = RequestMethod.GET)
@@ -107,6 +109,7 @@ public class LoginController implements CommunityConstant {
 
     /**
      * 生成验证码
+     *
      * @param response
      */
     @RequestMapping(path = "/kaptcha", method = RequestMethod.GET)
@@ -141,9 +144,10 @@ public class LoginController implements CommunityConstant {
 
     /**
      * 登录
-     * @param username 账号
-     * @param password 密码
-     * @param code 验证码
+     *
+     * @param username   账号
+     * @param password   密码
+     * @param code       验证码
      * @param rememberme 是否记住我
      * @param model
      * @param response
@@ -189,6 +193,7 @@ public class LoginController implements CommunityConstant {
 
     /**
      * 登出
+     *
      * @param ticket
      * @return
      */

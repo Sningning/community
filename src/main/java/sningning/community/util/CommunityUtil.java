@@ -16,6 +16,7 @@ public class CommunityUtil {
 
     /**
      * 生成随机字符串
+     *
      * @return
      */
     public static String generateUUID() {
@@ -33,7 +34,6 @@ public class CommunityUtil {
     }
 
     /**
-     *
      * @param code
      * @param msg
      * @param map

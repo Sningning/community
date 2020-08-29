@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 
 /**
  * 统一异常处理
+ *
  * @author: Song Ningning
  * @date: 2020-08-10 22:20
  */
@@ -24,8 +25,8 @@ public class ExceptionAdvice {
 
     @ExceptionHandler({Exception.class})
     public void handleException(Exception e, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        LOGGER.error("服务器发生异常：" +e.getMessage());
-        for(StackTraceElement element : e.getStackTrace()) {
+        LOGGER.error("服务器发生异常：" + e.getMessage());
+        for (StackTraceElement element : e.getStackTrace()) {
             LOGGER.error(element.toString());
         }
 

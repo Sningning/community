@@ -65,6 +65,7 @@ public class UserController implements CommunityConstant {
 
     /**
      * 上传头像
+     *
      * @param headerImage
      * @param model
      * @return
@@ -134,6 +135,7 @@ public class UserController implements CommunityConstant {
 
     /**
      * 更新密码
+     *
      * @param oldPassword 旧密码
      * @param newPassword 新密码
      * @return
@@ -163,6 +165,10 @@ public class UserController implements CommunityConstant {
 
     /**
      * 个人主页
+     *
+     * @param userId
+     * @param model
+     * @return
      */
     @RequestMapping(path = "/profile/{userId}", method = RequestMethod.GET)
     public String getProfilePage(@PathVariable("userId") int userId, Model model) {

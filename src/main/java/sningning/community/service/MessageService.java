@@ -104,6 +104,7 @@ public class MessageService implements CommunityConstant {
 
     /**
      * 将消息设置为已读
+     *
      * @param ids
      * @return
      */
@@ -113,6 +114,7 @@ public class MessageService implements CommunityConstant {
 
     /**
      * 查询某个主题下最新的通知
+     *
      * @param userId
      * @param topic
      * @return
@@ -123,6 +125,7 @@ public class MessageService implements CommunityConstant {
 
     /**
      * 查询某个主题所包含的通知数量
+     *
      * @param userId
      * @param topic
      * @return
@@ -133,6 +136,7 @@ public class MessageService implements CommunityConstant {
 
     /**
      * 查询未读通知的数量
+     *
      * @param userId
      * @param topic
      * @return
@@ -143,6 +147,7 @@ public class MessageService implements CommunityConstant {
 
     /**
      * 查询通知列表
+     *
      * @param userId
      * @param topic
      * @param offset

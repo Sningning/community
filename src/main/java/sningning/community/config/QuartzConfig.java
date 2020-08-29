@@ -30,6 +30,7 @@ public class QuartzConfig {
     /**
      * 测试方法
      * 配置 JobDetail
+     *
      * @return
      */
     // @Bean
@@ -46,6 +47,7 @@ public class QuartzConfig {
     /**
      * 测试方法
      * 配置 Trigger(SimpleTriggerFactoryBean, CronTriggerFactoryBean)
+     *
      * @param alphaJobDetail
      * @return
      */
@@ -62,6 +64,7 @@ public class QuartzConfig {
 
     /**
      * 刷新帖子分数任务
+     *
      * @return
      */
     @Bean

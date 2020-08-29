@@ -23,11 +23,12 @@ import java.util.Map;
 
 /**
  * 事件消费者
+ *
  * @author: Song Ningning
  * @date: 2020-08-15 22:10
  */
 @Component
-public class EventConsumer implements CommunityConstant  {
+public class EventConsumer implements CommunityConstant {
 
     private static Logger LOGGER = LoggerFactory.getLogger(EventConsumer.class);
 
@@ -86,6 +87,7 @@ public class EventConsumer implements CommunityConstant  {
 
     /**
      * 消费发帖事件
+     *
      * @param record
      */
     @KafkaListener(topics = {TOPIC_PUBLISH})
@@ -107,6 +109,7 @@ public class EventConsumer implements CommunityConstant  {
 
     /**
      * 消费删帖事件
+     *
      * @param record
      */
     @KafkaListener(topics = {TOPIC_DELETE})

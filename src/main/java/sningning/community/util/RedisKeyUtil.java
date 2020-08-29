@@ -127,7 +127,6 @@ public class RedisKeyUtil {
     }
 
     /**
-     *
      * @return
      */
     public static String getPostScoreKey() {
