@@ -102,4 +102,13 @@ public class Page {
         this.path = path;
     }
 
+    @Override
+    public String toString() {
+        return "Page{" +
+                "current=" + current +
+                ", limit=" + limit +
+                ", rows=" + rows +
+                ", path='" + path + '\'' +
+                '}';
+    }
 }
