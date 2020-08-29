@@ -1,13 +1,23 @@
 package sningning.community.service;
 
+import com.github.benmanes.caffeine.cache.CacheLoader;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.LoadingCache;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 import sningning.community.dao.DiscussPostMapper;
 import sningning.community.entity.DiscussPost;
 import sningning.community.util.SensitiveFilter;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: Song Ningning
@@ -16,11 +26,82 @@ import java.util.List;
 @Service
 public class DiscussPostService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DiscussPostService.class);
+
     @Autowired
     private DiscussPostMapper discussPostMapper;
 
     @Autowired
     private SensitiveFilter sensitiveFilter;
+
+    @Value("${caffeine.posts.maxsize}")
+    private int maxSize;
+
+    @Value("${caffeine.posts.expire-seconds}")
+    private long expireSeconds;
+
+    /**
+     * Caffeine 核心接口：Cache。两个常用子接口：LoadingCache, AsyncLoadingCache
+     */
+
+    /**
+     * 帖子列表缓存
+     */
+    private LoadingCache<String, List<DiscussPost>> postListCache;
+
+    /**
+     * 帖子总数缓存
+     */
+    private LoadingCache<Integer, Integer> postRowsCache;
+
+    /**
+     * 初始化
+     */
+    @PostConstruct
+    private void init() {
+        // 初始化帖子列表缓存
+        postListCache = Caffeine.newBuilder()
+                .maximumSize(maxSize)
+                .expireAfterWrite(expireSeconds, TimeUnit.SECONDS)
+                .build(new CacheLoader<String, List<DiscussPost>>() {
+                    @Nullable
+                    @Override
+                    public List<DiscussPost> load(@NonNull String key) throws Exception {
+                        if (key.length() == 0) {
+                            throw new IllegalArgumentException("参数错误！");
+                        }
+
+                        String[] params = key.split(":");
+                        if (params.length != 2) {
+                            throw new IllegalArgumentException("参数错误！");
+                        }
+
+                        int offset = Integer.parseInt(params[0]);
+                        int limit = Integer.parseInt(params[1]);
+
+                        // 省略了二级缓存：Redis
+
+                        LOGGER.debug("Load post lists from DB.");
+                        return discussPostMapper.selectDiscussPosts(0, offset, limit, 1);
+                    }
+                });
+
+        // 初始化帖子总数缓存
+        postRowsCache = Caffeine.newBuilder()
+                .maximumSize(maxSize)
+                .expireAfterWrite(expireSeconds, TimeUnit.SECONDS)
+                .build(new CacheLoader<Integer, Integer>() {
+                    @Nullable
+                    @Override
+                    public Integer load(@NonNull Integer key) throws Exception {
+
+                        // 省略了二级缓存：Redis
+
+                        LOGGER.debug("Load post rows from DB.");
+                        return discussPostMapper.selectDiscussPostRows(key);
+                    }
+                });
+    }
 
     /**
      * 分页查询帖子
@@ -31,16 +112,25 @@ public class DiscussPostService {
      * @return 查询到的帖子集合
      */
     public List<DiscussPost> findDiscussPost(int userId, int offset, int limit, int orderMode) {
+        // 只有当显示首页并且查看热门帖子时才查缓存
+        if (userId == 0 && orderMode == 1) {
+            return postListCache.get(offset + ":" + limit);
+        }
+        LOGGER.debug("Load post lists from DB.");
         return discussPostMapper.selectDiscussPosts(userId, offset, limit, orderMode);
     }
 
     /**
      * 查询帖子总数
      *
-     * @param userId 用户 id，为 0 时，不拼入 SQL 语句；不为 0 时，拼入 SQL 语句
+     * @param userId 用户 id。为 0 时，查询总行数；不为 0 时，查询指定用户的帖子总数。
      * @return 帖子总数
      */
     public int findDiscussPostRows(int userId) {
+        if (userId == 0) {
+            return postRowsCache.get(userId);
+        }
+        LOGGER.debug("Load post rows from DB.");
         return discussPostMapper.selectDiscussPostRows(userId);
     }
 
