@@ -55,7 +55,7 @@ public class DiscussPostService {
     private LoadingCache<Integer, Integer> postRowsCache;
 
     /**
-     * 初始化
+     * 初始化本地缓存
      */
     @PostConstruct
     private void init() {
@@ -106,7 +106,7 @@ public class DiscussPostService {
     /**
      * 分页查询帖子
      *
-     * @param userId 用户 id，为 0 时，不查询所有；不为 0 时，查询指定用户的帖子
+     * @param userId 用户 id，为 0 时，查询所有；不为 0 时，查询指定用户的帖子
      * @param offset 每页起始行行号
      * @param limit  每页显示的行数
      * @return 查询到的帖子集合

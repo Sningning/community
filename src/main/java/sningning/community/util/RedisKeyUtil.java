@@ -127,6 +127,8 @@ public class RedisKeyUtil {
     }
 
     /**
+     * 帖子分数
+     *
      * @return
      */
     public static String getPostScoreKey() {
