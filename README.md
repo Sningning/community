@@ -546,6 +546,7 @@ function publish() {
 <div align="center">
     <img src="pics/1.gif">
 </div>
+
 ## 性能测试
 
 使用 Apache JMeter 来进行压力测试。
